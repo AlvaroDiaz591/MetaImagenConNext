@@ -19,8 +19,121 @@
   }
 }
 
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.fondo-login {
+  min-height: 100vh;
+  width: 100vw;
+  background: url('/assets/login/consu.jpg') no-repeat center center fixed;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.contenedor-login {
+  background: #3e4241b3;
+  border-radius: 50%;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  width: 625px;
+  height: 625px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  padding: 58px 46px;
+}
+
+.titulo-login {
+  color: #fff;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 18px;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.formulario-login {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.campo-input {
+  position: relative;
+  width: 100%;
+}
+
+.input-login {
+  width: 100%;
+  padding: 12px 40px 12px 16px;
+  border-radius: 24px;
+  border: none;
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
+  transition: background 0.2s;
+}
+.input-login:focus {
+  background: rgba(255,255,255,0.22);
+}
+
+.icono-input {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+.boton-login {
+  width: 100%;
+  padding: 12px;
+  border-radius: 24px;
+  border: none;
+  background: linear-gradient(90deg, #05e298 0%, #010702 100%);
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  transition: background 0.2s, transform 0.1s;
+}
+.boton-login:hover {
+  background: linear-gradient(90deg, #070303 0%, #3eb805 100%);
+  transform: scale(1.04);
+}
+
+.recordar-olvido {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+  font-size: 0.95rem;
+  color: #fff;
+}
+.olvido {
+  color: #a0c4ff;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.olvido:hover {
+  color: #03f5a4;
 }
