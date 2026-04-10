@@ -1,0 +1,248 @@
+.hero {
+  position: relative;
+  padding: 2.4rem 1.1rem 4rem;
+}
+
+.backgroundWord {
+  position: absolute;
+  left: 50%;
+  top: 8rem;
+  transform: translateX(-50%);
+  margin: 0;
+  font-size: clamp(3.8rem, 18vw, 14rem);
+  letter-spacing: 0.08em;
+  color: rgba(224, 242, 241, 0.08);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  text-transform: uppercase;
+  font-weight: 900;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(280px, 430px) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.heroTextColumn {
+  display: grid;
+  gap: 0.9rem;
+  padding: 1rem;
+  border: 1px solid rgba(29, 233, 182, 0.2);
+  border-radius: 16px;
+  background: linear-gradient(170deg, rgba(4, 32, 35, 0.88), rgba(3, 24, 28, 0.8));
+  box-shadow: 0 12px 24px rgba(1, 10, 11, 0.35);
+}
+
+.greeting {
+  margin: 0;
+  font-size: 0.76rem;
+  color: #b5f8e8;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.heroTextColumn h2 {
+  margin: 0;
+  font-size: clamp(1.36rem, 2.5vw, 2rem);
+  line-height: 1.12;
+}
+
+.heroTextColumn p {
+  margin: 0;
+  color: rgba(224, 242, 241, 0.84);
+  line-height: 1.46;
+}
+
+.ctaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.ctaRow button {
+  border: 1px solid rgba(29, 233, 182, 0.36);
+  border-radius: 999px;
+  padding: 0.46rem 0.9rem;
+  background: rgba(29, 233, 182, 0.12);
+  color: #d9fff4;
+  font-weight: 700;
+  font-size: 0.77rem;
+  cursor: pointer;
+}
+
+.fluidText {
+  overflow: hidden;
+  border-top: 1px solid rgba(29, 233, 182, 0.2);
+  border-bottom: 1px solid rgba(29, 233, 182, 0.2);
+  padding: 0.45rem 0;
+}
+
+.fluidText div {
+  display: inline-flex;
+  gap: 1.2rem;
+  white-space: nowrap;
+  animation: fluidTicker 18s linear infinite;
+}
+
+.fluidText span {
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: rgba(224, 242, 241, 0.72);
+}
+
+.heroRingsColumn {
+  min-height: clamp(820px, 108vh, 1160px);
+  border: 1px solid rgba(29, 233, 182, 0.2);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 50% 46%, rgba(29, 233, 182, 0.1), rgba(1, 8, 12, 0.9) 60%),
+    linear-gradient(180deg, rgba(2, 12, 20, 0.95), rgba(2, 9, 14, 0.98));
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  position: relative;
+  padding: 1.25rem 0.8rem;
+}
+
+.heroRingsColumn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 12% 18%, rgba(255, 255, 255, 0.9) 0.8px, transparent 1.4px),
+    radial-gradient(circle at 21% 72%, rgba(255, 255, 255, 0.7) 0.8px, transparent 1.6px),
+    radial-gradient(circle at 48% 14%, rgba(255, 255, 255, 0.8) 1px, transparent 1.8px),
+    radial-gradient(circle at 67% 66%, rgba(255, 255, 255, 0.75) 0.9px, transparent 1.6px),
+    radial-gradient(circle at 84% 29%, rgba(255, 255, 255, 0.8) 0.9px, transparent 1.7px),
+    radial-gradient(circle at 91% 79%, rgba(255, 255, 255, 0.75) 1px, transparent 1.8px);
+  opacity: 0.35;
+  animation: starTwinkle 6.4s ease-in-out infinite;
+}
+
+.heroRingsColumn::after {
+  content: "";
+  position: absolute;
+  inset: 18% 10%;
+  pointer-events: none;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(29, 233, 182, 0.18), transparent 68%);
+  filter: blur(14px);
+}
+
+.statusText {
+  margin: 0;
+  font-size: 0.86rem;
+  color: rgba(224, 242, 241, 0.84);
+}
+
+.infoSection {
+  margin-top: 1rem;
+  border: 1px solid rgba(29, 233, 182, 0.16);
+  border-radius: 14px;
+  padding: 0.9rem;
+  background: rgba(3, 18, 23, 0.7);
+}
+
+.infoSection h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+}
+
+.infoSection p {
+  margin: 0;
+  color: rgba(224, 242, 241, 0.78);
+}
+
+.agendaServiceCard {
+  margin-top: 0.15rem;
+  display: grid;
+  gap: 0.45rem;
+  border: 1px solid rgba(29, 233, 182, 0.26);
+  border-radius: 12px;
+  padding: 0.75rem;
+  background: linear-gradient(170deg, rgba(6, 34, 40, 0.86), rgba(4, 20, 25, 0.9));
+}
+
+.agendaServiceTag {
+  margin: 0;
+  width: fit-content;
+  border-radius: 999px;
+  border: 1px solid rgba(29, 233, 182, 0.34);
+  background: rgba(29, 233, 182, 0.14);
+  color: #d4fff0;
+  padding: 0.14rem 0.5rem;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.agendaServiceCard h4 {
+  margin: 0;
+  font-size: 1rem;
+  color: #dbfff3;
+}
+
+.agendaServiceDescription {
+  margin: 0;
+  color: rgba(224, 242, 241, 0.9);
+  line-height: 1.4;
+}
+
+.agendaServiceMeta {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.agendaServiceMeta span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid rgba(224, 242, 241, 0.25);
+  padding: 0.16rem 0.52rem;
+  font-size: 0.67rem;
+  color: rgba(224, 242, 241, 0.92);
+  background: rgba(8, 28, 34, 0.62);
+}
+
+.agendaServiceCard button {
+  width: fit-content;
+  border: 1px solid rgba(29, 233, 182, 0.4);
+  border-radius: 999px;
+  background: rgba(29, 233, 182, 0.2);
+  color: #dbfff3;
+  padding: 0.34rem 0.85rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+@keyframes fluidTicker {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-55%);
+  }
+}
+
+@keyframes starTwinkle {
+  0% {
+    opacity: 0.26;
+  }
+  50% {
+    opacity: 0.42;
+  }
+  100% {
+    opacity: 0.26;
+  }
+}

@@ -1,0 +1,187 @@
+@media (max-width: 700px) {
+  .authScene {
+    overflow-x: hidden;
+    overflow-y: auto;
+    align-items: flex-start;
+    padding-top: 102px;
+    padding-bottom: 1rem;
+  }
+
+  .brandLogoWrap {
+    top: 10px;
+    left: 10px;
+    width: clamp(82px, 24vw, 120px);
+    opacity: 0.8;
+  }
+
+  .authPerspective {
+    height: auto;
+    min-height: 0;
+    width: 100%;
+    max-width: 560px;
+    perspective: none;
+  }
+
+  .audioDock {
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    width: auto;
+    padding: 0.66rem 0.72rem;
+  }
+
+  .authFlipper {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    transform: none !important;
+    transition: none;
+  }
+
+  .authFace {
+    position: relative;
+    inset: auto;
+    display: none;
+    backface-visibility: visible;
+    overflow: visible;
+    min-height: 0;
+    border-radius: 28px;
+    padding: 1rem;
+    animation: mobilePanelIn 0.34s ease both;
+  }
+
+  .front,
+  .back {
+    transform: none;
+  }
+
+  .mobileActive {
+    display: flex;
+  }
+
+  .mobileHidden {
+    display: none;
+  }
+
+  .authScene :global(.auth-form) {
+    width: min(100%, 360px);
+    gap: 0.52rem;
+  }
+
+  .authScene :global(.auth-form-register) {
+    width: min(100%, 360px);
+    gap: 0.5rem;
+  }
+
+  .authScene :global(.auth-field-label) {
+    font-size: 0.82rem;
+  }
+
+  .authScene :global(.auth-grid-two) {
+    grid-template-columns: 1fr;
+    gap: 0.48rem;
+  }
+
+  .authScene :global(.auth-title) {
+    font-size: clamp(1.2rem, 5.7vw, 1.55rem);
+    margin-bottom: 0.24rem;
+  }
+
+  .authScene :global(.auth-input) {
+    font-size: 0.88rem;
+    padding-top: 0.62rem;
+    padding-bottom: 0.62rem;
+  }
+
+  .authScene :global(.auth-visibility-btn) {
+    width: 32px;
+    height: 32px;
+  }
+
+  .authScene :global(.auth-button) {
+    font-size: 0.92rem;
+    padding: 0.68rem 0.9rem;
+  }
+
+  .authScene :global(.auth-check) {
+    font-size: 0.86rem;
+  }
+
+  .authScene :global(.auth-switch-text) {
+    font-size: 0.82rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .brandLogoWrap {
+    top: 8px;
+    left: 8px;
+    width: clamp(70px, 23vw, 92px);
+    opacity: 0.72;
+  }
+
+  .authScene {
+    padding: 0.55rem;
+    padding-top: 92px;
+  }
+
+  .audioDock {
+    border-radius: 14px;
+    gap: 0.42rem;
+  }
+
+  .audioDockHeader {
+    gap: 0.5rem;
+  }
+
+  .audioDockTitle {
+    font-size: 0.74rem;
+  }
+
+  .audioDockButton {
+    padding: 0.28rem 0.56rem;
+    font-size: 0.68rem;
+  }
+
+  .audioVolumeValue {
+    min-width: 38px;
+    font-size: 0.68rem;
+  }
+
+  .authFace {
+    border-radius: 22px;
+    padding: 0.74rem;
+  }
+
+  .authScene :global(.auth-title) {
+    letter-spacing: 0.5px;
+    font-size: clamp(1.08rem, 5.2vw, 1.34rem);
+  }
+
+  .authScene :global(.auth-field-label) {
+    font-size: 0.76rem;
+  }
+
+  .authScene :global(.auth-form) {
+    width: min(100%, 340px);
+    gap: 0.48rem;
+  }
+
+  .authScene :global(.auth-input) {
+    font-size: 0.85rem;
+    padding-top: 0.58rem;
+    padding-bottom: 0.58rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .authScene :global(.auth-title-login),
+  .brandLogoWrap,
+  .brandLogoGlow,
+  .brandLogoImage,
+  .authFlipper {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+

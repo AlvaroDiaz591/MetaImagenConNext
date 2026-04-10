@@ -1,0 +1,91 @@
+@media (max-width: 1024px) {
+  .heroContent {
+    grid-template-columns: 1fr;
+  }
+
+  .heroRingsColumn {
+    min-height: clamp(760px, 98vh, 980px);
+  }
+
+  .services3DCarouselsRoot {
+    width: min(980px, 100%);
+  }
+
+  .carousel3DViewport {
+    min-height: 330px;
+    height: clamp(320px, 38vh, 400px);
+  }
+
+  .carousel3DOrbitCard {
+    width: clamp(118px, 15vw, 152px);
+    height: clamp(170px, 21vw, 206px);
+    transform: translate3d(-50%, -50%, 0) rotateY(var(--carousel-angle)) translateZ(clamp(205px, 24vw, 290px));
+  }
+}
+
+@media (max-width: 720px) {
+  .services3DCarouselsRoot {
+    gap: 0.9rem;
+  }
+
+  .carousel3DHeader {
+    padding: 0.58rem 0.65rem;
+  }
+
+  .carousel3DHeader h3 {
+    font-size: 0.86rem;
+  }
+
+  .carousel3DHeader p {
+    font-size: 0.7rem;
+  }
+
+  .carousel3DViewport {
+    min-height: 318px;
+    height: 50vh;
+  }
+
+  .carousel3DOrbitCard {
+    width: clamp(110px, 26vw, 136px);
+    height: clamp(170px, 34vw, 206px);
+    transform: translate3d(-50%, -50%, 0) rotateY(var(--carousel-angle)) translateZ(clamp(146px, 22vw, 196px));
+  }
+
+  .carousel3DCardInfo p {
+    font-size: 0.7rem;
+  }
+
+  .carousel3DCardInfo span {
+    font-size: 0.62rem;
+  }
+
+  .carousel3DCardBack p {
+    font-size: 0.66rem;
+  }
+
+  .carousel3DBackMeta span {
+    font-size: 0.6rem;
+  }
+
+  .topBar {
+    padding: 0.82rem 0.65rem 0.82rem 5.8rem;
+    align-items: flex-start;
+  }
+
+  .mainNav {
+    width: 100%;
+    border-radius: 18px;
+    padding: 0.28rem;
+  }
+
+  .mainNav button {
+    flex: 1 1 calc(50% - 0.3rem);
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  .brandBadgeDocked {
+    left: 0.8rem;
+    top: 0.8rem;
+  }
+}

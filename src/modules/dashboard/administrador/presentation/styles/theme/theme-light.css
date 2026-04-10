@@ -1,0 +1,336 @@
+.themeLight {
+  color-scheme: light;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(29, 233, 182, 0.16), transparent 34%),
+    radial-gradient(circle at 82% 12%, rgba(20, 125, 117, 0.12), transparent 32%),
+    linear-gradient(162deg, #f4fbfa 0%, #e7f5f2 55%, #d6ece8 100%);
+  color: #063a38;
+}
+
+.themeLight .header p,
+.themeLight .kpiTitle,
+.themeLight .kpiDescription,
+.themeLight .toolbarHint,
+.themeLight .paginationBar span,
+.themeLight .listSub,
+.themeLight .listMeta,
+.themeLight .quickActionCard p,
+.themeLight .emptyText,
+.themeLight .drawerItem p,
+.themeLight .rowSub {
+  color: #376d67;
+}
+
+.themeLight .headerNotificationPill {
+  background: rgba(255, 255, 255, 0.74);
+  color: #0a4743;
+  border-color: rgba(11, 79, 74, 0.24);
+}
+
+.themeLight .themeToggleButton {
+  background: rgba(255, 255, 255, 0.82);
+  color: #0a4743;
+  border-color: rgba(11, 79, 74, 0.24);
+}
+
+.themeLight .esp32HeroCopy,
+.themeLight .esp32ActionBlock,
+.themeLight .esp32Card,
+.themeLight .esp32TelemetryCard,
+.themeLight .esp32PinItem {
+  background: rgba(255, 255, 255, 0.78);
+  border-color: rgba(11, 79, 74, 0.18);
+}
+
+.themeLight .esp32StatusPill,
+.themeLight .esp32SecondaryButton,
+.themeLight .esp32GhostButton {
+  color: #0a4743;
+}
+
+.themeLight .esp32GhostButton {
+  background: rgba(11, 79, 74, 0.08);
+  border-color: rgba(11, 79, 74, 0.18);
+}
+
+.themeLight .esp32SecondaryButton {
+  background: rgba(20, 125, 117, 0.14);
+  border-color: rgba(11, 79, 74, 0.18);
+}
+
+.themeLight .esp32HeroCopy p,
+.themeLight .esp32MetaText,
+.themeLight .esp32List,
+.themeLight .esp32PinItem span,
+.themeLight .esp32TelemetryCard span {
+  color: #376d67;
+}
+
+.themeLight .esp32ProfileLabel {
+  color: #2f6862;
+}
+
+.themeLight .esp32ProfileSelect {
+  background: rgba(255, 255, 255, 0.88);
+  color: #083f3c;
+  border-color: rgba(11, 79, 74, 0.24);
+}
+
+.themeLight .esp32TelemetryCard strong,
+.themeLight .esp32Card h4,
+.themeLight .esp32HeroCopy h3 {
+  color: #083f3c;
+}
+
+.themeLight .esp32TargetLabel {
+  background: rgba(244, 251, 250, 0.96);
+  color: #0a4743;
+}
+
+.themeLight .sidebar {
+  background: linear-gradient(160deg, rgba(230, 247, 244, 0.94), rgba(206, 236, 232, 0.96));
+  color: #083f3c;
+  border-color: rgba(11, 79, 74, 0.2);
+}
+
+.themeLight .sidebarTitle {
+  color: #16615c;
+}
+
+.themeLight .sidebarGroup {
+  border-color: rgba(11, 79, 74, 0.2);
+  background: rgba(255, 255, 255, 0.54);
+}
+
+.themeLight .sidebarGroupToggle {
+  background: rgba(11, 79, 74, 0.1);
+  color: #0b4f4a;
+}
+
+.themeLight .sidebarItem {
+  border-color: rgba(11, 79, 74, 0.16);
+  background: rgba(255, 255, 255, 0.72);
+  color: #083d3a;
+}
+
+.themeLight .sidebarItem:hover {
+  background: rgba(11, 79, 74, 0.12);
+}
+
+.themeLight .sidebarItemActive {
+  background: rgba(29, 233, 182, 0.22);
+}
+
+.themeLight .sidebarMeta {
+  color: #2f6862;
+}
+
+.themeLight .panelAnimated,
+.themeLight .panel,
+.themeLight .kpiCard {
+  background: rgba(255, 255, 255, 0.74);
+  border-color: rgba(11, 79, 74, 0.24);
+  box-shadow: 0 16px 34px rgba(2, 26, 24, 0.08);
+}
+
+.themeLight .panelHeaderRow p {
+  color: #2d6460;
+}
+
+.themeLight .toolbar {
+  background: rgba(255, 255, 255, 0.72);
+  border-color: rgba(11, 79, 74, 0.24);
+}
+
+.themeLight .notificationCounter {
+  background: rgba(20, 125, 117, 0.18);
+  border-color: rgba(11, 79, 74, 0.26);
+  color: #0a4743;
+}
+
+.themeLight .markAllButton {
+  border-color: rgba(11, 79, 74, 0.25);
+  background: rgba(11, 79, 74, 0.14);
+  color: #0a4743;
+}
+
+.themeLight .subtleUpdating {
+  color: #4f7871;
+}
+
+.themeLight .searchInput,
+.themeLight .drawerInput {
+  background: rgba(255, 255, 255, 0.88);
+  color: #083f3c;
+}
+
+.themeLight .toolbarTotal,
+.themeLight .rowTitle,
+.themeLight .drawerItem strong {
+  color: #083f3c;
+}
+
+.themeLight .tableWrap {
+  border-color: #c9dfda;
+}
+
+.themeLight .compactRow {
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.themeLight .compactRowInactive {
+  background: rgba(225, 239, 236, 0.8);
+}
+
+.themeLight .treatmentsFilters {
+  background: rgba(255, 255, 255, 0.74);
+  border-color: rgba(11, 79, 74, 0.22);
+}
+
+.themeLight .treatmentFilterChip,
+.themeLight .treatmentToggle {
+  background: rgba(11, 79, 74, 0.09);
+  border-color: rgba(11, 79, 74, 0.2);
+  color: #0a4743;
+}
+
+.themeLight .treatmentFilterChipActive,
+.themeLight .treatmentToggleActive {
+  background: rgba(29, 233, 182, 0.35);
+  color: #06443f;
+}
+
+.themeLight .treatmentCard {
+  background: linear-gradient(175deg, rgba(255, 255, 255, 0.9), rgba(235, 247, 244, 0.95));
+  border-color: rgba(11, 79, 74, 0.2);
+  box-shadow: 0 12px 22px rgba(2, 26, 24, 0.1);
+}
+
+.themeLight .treatmentTopChipMuted {
+  background: rgba(11, 79, 74, 0.14);
+  color: #0a4743;
+}
+
+.themeLight .treatmentTitle,
+.themeLight .treatmentMainMeta,
+.themeLight .treatmentInfoChip,
+.themeLight .treatmentVideoButton,
+.themeLight .treatmentViewButton,
+.themeLight .treatmentToggleButton {
+  color: #0a4743;
+}
+
+.themeLight .treatmentInfoChip,
+.themeLight .treatmentViewButton {
+  background: rgba(11, 79, 74, 0.11);
+}
+
+.themeLight .treatmentVideoButton {
+  background: rgba(255, 255, 255, 0.88);
+  border-color: rgba(11, 79, 74, 0.24);
+}
+
+.themeLight .treatmentToggleButton {
+  background: rgba(20, 125, 117, 0.18);
+}
+
+.themeLight .treatmentVideoModal {
+  background: linear-gradient(170deg, rgba(255, 255, 255, 0.97), rgba(239, 249, 246, 0.98));
+  border-color: rgba(11, 79, 74, 0.22);
+}
+
+.themeLight .treatmentVideoModalTitle,
+.themeLight .treatmentVideoCloseButton {
+  color: #0a4743;
+}
+
+.themeLight .treatmentVideoCloseButton {
+  background: rgba(11, 79, 74, 0.08);
+  border-color: rgba(11, 79, 74, 0.2);
+}
+
+.themeLight .treatmentDescription,
+.themeLight .treatmentTags,
+.themeLight .treatmentBenefits {
+  color: #376d67;
+}
+
+.themeLight .rowChip {
+  background: rgba(11, 79, 74, 0.1);
+  color: #0a4743;
+}
+
+.themeLight .rowChipActive {
+  background: rgba(29, 233, 182, 0.34);
+  color: #05443f;
+}
+
+.themeLight .rowChipInactive {
+  background: rgba(4, 53, 54, 0.12);
+  color: #2f6460;
+}
+
+.themeLight .actionButtonGhost {
+  background: rgba(11, 79, 74, 0.12);
+  color: #0a4743;
+}
+
+.themeLight .actionButtonEdit {
+  background: rgba(20, 125, 117, 0.18);
+  color: #0a4743;
+}
+
+.themeLight .actionButtonSoft {
+  background: rgba(29, 233, 182, 0.26);
+  color: #06443e;
+}
+
+.themeLight .actionButtonDanger {
+  background: rgba(4, 53, 54, 0.16);
+  color: #0a4743;
+}
+
+.themeLight .dataTable thead th {
+  background: #e7f4f1;
+  border-bottom-color: #bdd8d2;
+}
+
+.themeLight .dataTable tbody td {
+  border-bottom-color: #d7e8e4;
+}
+
+.themeLight .dataTable tbody tr:hover {
+  background: #f0faf7;
+}
+
+.themeLight .listItem,
+.themeLight .quickActionCard {
+  border-color: rgba(11, 79, 74, 0.2);
+}
+
+.themeLight .quickActionCard {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.themeLight .roleTag {
+  color: #06443e;
+}
+
+.themeLight .drawer {
+  background: rgba(243, 250, 248, 0.95);
+  border-left-color: rgba(11, 79, 74, 0.24);
+}
+
+.themeLight .drawerHeader {
+  border-bottom-color: rgba(11, 79, 74, 0.2);
+}
+
+.themeLight .drawerButtonGhost {
+  border-color: rgba(11, 79, 74, 0.25);
+  background: rgba(11, 79, 74, 0.09);
+  color: #0a4743;
+}
+
+.themeLight .drawerItem {
+  background: rgba(255, 255, 255, 0.9);
+}
