@@ -56,6 +56,8 @@ const RegisterForm = ({
 }: RegisterFormProps) => {
   const [mostrarContrasena, setMostrarContrasena] = useState(false);
   const [mostrarConfirmacion, setMostrarConfirmacion] = useState(false);
+  const pendingRequirements = passwordStrength.requirements.filter((item) => !item.met);
+  const isStrongPassword = passwordStrength.level === "buena";
 
   const strengthText = useMemo(() => {
     if (passwordStrength.level === "mala") {
@@ -71,49 +73,53 @@ const RegisterForm = ({
     <form onSubmit={onSubmit} className="auth-form auth-form-register" aria-label="Formulario de registro">
       <h2 className="auth-title">Crear cuenta</h2>
 
-      <AuthInput
-        id="register-nombre"
-        label="Nombre Completo"
-        value={nombreCompleto}
-        onChange={onNombreCompletoChange}
-        placeholder="Nombre completo"
-        required
-        autoComplete="name"
-        icon={<IdCardIcon className="auth-icon" />}
-      />
+      <div className="auth-grid-two">
+        <AuthInput
+          id="register-nombre"
+          label="Nombre Completo"
+          value={nombreCompleto}
+          onChange={onNombreCompletoChange}
+          placeholder="Nombre completo"
+          required
+          autoComplete="name"
+          icon={<IdCardIcon className="auth-icon" />}
+        />
 
-      <AuthInput
-        id="register-apellido-paterno"
-        label="Apellido Paterno"
-        value={apellidoPaterno}
-        onChange={onApellidoPaternoChange}
-        placeholder="Apellido paterno"
-        autoComplete="family-name"
-        icon={<IdCardIcon className="auth-icon" />}
-      />
+        <AuthInput
+          id="register-contacto"
+          label="Número de contacto"
+          value={numeroContacto}
+          onChange={onNumeroContactoChange}
+          placeholder="71234567"
+          required
+          inputMode="numeric"
+          maxLength={8}
+          prefix="+591"
+          icon={<PhoneIcon className="auth-icon" />}
+        />
+      </div>
 
-      <AuthInput
-        id="register-apellido-materno"
-        label="Apellido Materno"
-        value={apellidoMaterno}
-        onChange={onApellidoMaternoChange}
-        placeholder="Apellido materno"
-        autoComplete="additional-name"
-        icon={<IdCardIcon className="auth-icon" />}
-      />
+      <div className="auth-grid-two">
+        <AuthInput
+          id="register-apellido-paterno"
+          label="Apellido Paterno"
+          value={apellidoPaterno}
+          onChange={onApellidoPaternoChange}
+          placeholder="Apellido paterno"
+          autoComplete="family-name"
+          icon={<IdCardIcon className="auth-icon" />}
+        />
 
-      <AuthInput
-        id="register-contacto"
-        label="Número de contacto"
-        value={numeroContacto}
-        onChange={onNumeroContactoChange}
-        placeholder="71234567"
-        required
-        inputMode="numeric"
-        maxLength={8}
-        prefix="+591"
-        icon={<PhoneIcon className="auth-icon" />}
-      />
+        <AuthInput
+          id="register-apellido-materno"
+          label="Apellido Materno"
+          value={apellidoMaterno}
+          onChange={onApellidoMaternoChange}
+          placeholder="Apellido materno"
+          autoComplete="additional-name"
+          icon={<IdCardIcon className="auth-icon" />}
+        />
+      </div>
 
       <AuthInput
         id="register-email"
@@ -163,13 +169,16 @@ const RegisterForm = ({
         <p className="auth-strength-label">
           Fortaleza de contraseña: <strong>{strengthText}</strong>
         </p>
-        <ul className="auth-strength-list">
-          {passwordStrength.requirements.map((item) => (
-            <li key={item.label} className={item.met ? "auth-strength-ok" : "auth-strength-pending"}>
-              {item.label}
-            </li>
-          ))}
-        </ul>
+
+        {pendingRequirements.length > 0 ? (
+          <ul className="auth-strength-list" aria-label="Requisitos de contraseña pendientes">
+            {pendingRequirements.map((item) => (
+              <li key={item.label} className="auth-strength-pending">
+                {item.label}
+              </li>
+            ))}
+          </ul>
+        ) : null}
       </div>
 
       <AuthInput
@@ -200,7 +209,7 @@ const RegisterForm = ({
 
       {error ? <p className="auth-error">{error}</p> : null}
 
-      <AuthButton type="submit" variant="primary" disabled={cargando}>
+      <AuthButton type="submit" variant="primary" disabled={cargando || !isStrongPassword}>
         {cargando ? "Creando..." : "Crear cuenta"}
       </AuthButton>
 

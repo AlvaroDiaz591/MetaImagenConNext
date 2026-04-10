@@ -1,0 +1,286 @@
+.authScene :global(.auth-form) {
+  width: min(100%, 430px);
+  display: grid;
+  gap: 0.72rem;
+  color: #eef4f6;
+}
+
+.authScene :global(.auth-form-register) {
+  width: min(100%, 520px);
+  gap: 0.58rem;
+  max-height: none;
+  overflow: visible;
+  padding-right: 0;
+}
+
+.authScene :global(.auth-grid-two) {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.62rem;
+}
+
+.authScene :global(.auth-form-register .auth-field) {
+  gap: 0.3rem;
+}
+
+.authScene :global(.auth-form-register .auth-title) {
+  margin-bottom: 0.24rem;
+  font-size: clamp(1.35rem, 2.6vw, 1.75rem);
+}
+
+.authScene :global(.auth-form-register .auth-field-label) {
+  font-size: 0.8rem;
+}
+
+.authScene :global(.auth-title) {
+  margin: 0 0 0.4rem;
+  text-align: center;
+  font-size: clamp(1.6rem, 3.4vw, 2.2rem);
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+.authScene :global(.auth-title-login) {
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  color: #06e79c;
+  text-shadow: 0 0 8px rgba(179, 223, 36, 0.76), 0 0 22px rgba(179, 223, 36, 0.2);
+  animation: loginTitlePulse 2.8s ease-in-out infinite;
+}
+
+.authScene :global(.auth-field) {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.authScene :global(.auth-field-label) {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #d8e7ed;
+}
+
+.authScene :global(.auth-field-control) {
+  position: relative;
+}
+
+.authScene :global(.auth-input) {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+  border-radius: 999px;
+  padding: 0.72rem 2.55rem 0.72rem 1rem;
+  font-size: 0.92rem;
+  outline: none;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.authScene :global(.auth-input-with-prefix) {
+  padding-left: 4.9rem;
+}
+
+.authScene :global(.auth-input-with-trailing) {
+  padding-right: 2.9rem;
+}
+
+.authScene :global(.auth-input-prefix) {
+  position: absolute;
+  left: 0.45rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #e2f8f2;
+  background: rgba(8, 98, 78, 0.75);
+  border: 1px solid rgba(106, 236, 205, 0.45);
+  border-radius: 999px;
+  padding: 0.22rem 0.5rem;
+}
+
+.authScene :global(.auth-input::placeholder) {
+  color: rgba(240, 245, 248, 0.74);
+}
+
+.authScene :global(.auth-input:focus) {
+  border-color: rgba(112, 243, 209, 0.86);
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.authScene :global(.auth-input-icon) {
+  position: absolute;
+  right: 0.85rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  color: rgba(222, 245, 248, 0.92);
+}
+
+.authScene :global(.auth-input-trailing) {
+  position: absolute;
+  right: 0.42rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+}
+
+.authScene :global(.auth-visibility-btn) {
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+  color: #ecf8fb;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.authScene :global(.auth-visibility-btn:hover) {
+  background: rgba(255, 255, 255, 0.26);
+}
+
+.authScene :global(.auth-icon) {
+  width: 18px;
+  height: 18px;
+}
+
+.authScene :global(.auth-row) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.3rem 0;
+  gap: 0.7rem;
+}
+
+.authScene :global(.auth-strength) {
+  display: grid;
+  gap: 0.3rem;
+  margin-top: -0.15rem;
+}
+
+.authScene :global(.auth-strength-bar) {
+  width: 100%;
+  height: 7px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.22);
+  overflow: hidden;
+}
+
+.authScene :global(.auth-strength-fill) {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.2s ease;
+}
+
+.authScene :global(.auth-strength-mala) {
+  background: linear-gradient(90deg, #e74c3c, #ff8779);
+}
+
+.authScene :global(.auth-strength-intermedia) {
+  background: linear-gradient(90deg, #e3b315, #f7df67);
+}
+
+.authScene :global(.auth-strength-buena) {
+  background: linear-gradient(90deg, #12b981, #74f5c7);
+}
+
+.authScene :global(.auth-strength-label) {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #e9f4f7;
+}
+
+.authScene :global(.auth-strength-list) {
+  margin: 0;
+  padding-left: 1rem;
+  font-size: 0.74rem;
+  display: grid;
+  gap: 0.1rem;
+}
+
+.authScene :global(.auth-strength-ok) {
+  color: #8ff2cd;
+}
+
+.authScene :global(.auth-strength-pending) {
+  color: #f2c2c2;
+}
+
+.authScene :global(.auth-check) {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.92rem;
+}
+
+.authScene :global(.auth-check input) {
+  accent-color: #19d8ab;
+}
+
+.authScene :global(.auth-link) {
+  border: none;
+  background: transparent;
+  color: #8dd6ff;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.authScene :global(.auth-link:hover) {
+  color: #6ef0c8;
+}
+
+.authScene :global(.auth-error) {
+  margin: 0.2rem 0;
+  padding: 0.55rem 0.7rem;
+  background: rgba(179, 35, 35, 0.28);
+  border: 1px solid rgba(232, 104, 104, 0.6);
+  border-radius: 10px;
+  color: #ffe8e8;
+  font-size: 0.88rem;
+}
+
+.authScene :global(.auth-button) {
+  width: 100%;
+  border: none;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.96rem;
+  padding: 0.74rem 1rem;
+  cursor: pointer;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.authScene :global(.auth-button:disabled) {
+  cursor: not-allowed;
+  opacity: 0.82;
+}
+
+.authScene :global(.auth-button-primary) {
+  color: #f3fffa;
+  background: linear-gradient(90deg, #08c99b 0%, #06674f 100%);
+  box-shadow: 0 8px 22px rgba(6, 95, 74, 0.35);
+}
+
+.authScene :global(.auth-button-primary:hover:not(:disabled)) {
+  transform: translateY(-1px);
+  filter: brightness(1.06);
+}
+
+.authScene :global(.auth-button-ghost) {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.authScene :global(.auth-switch-text) {
+  margin: 0.24rem 0 0;
+  text-align: center;
+  font-size: 0.88rem;
+  color: #deedf1;
+}
+

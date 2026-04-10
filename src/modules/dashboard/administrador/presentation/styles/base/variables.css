@@ -1,0 +1,11 @@
+:root {
+  --admin-marine-green: #0b4f4a;
+  --admin-deep-sea-blue: #043536;
+  --admin-lagoon: #147d75;
+  --admin-foam: #e0f2f1;
+  --admin-highlight: #1de9b6;
+  --admin-surface-glass: rgba(224, 242, 241, 0.1);
+  --admin-border-glass: rgba(29, 233, 182, 0.24);
+  --admin-text-strong: #ecf9f8;
+  --admin-text-soft: #b7ddd8;
+}

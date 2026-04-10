@@ -1,0 +1,376 @@
+.services3DCarouselsRoot {
+  width: min(1180px, 100%);
+  display: grid;
+  gap: 1.25rem;
+  align-content: start;
+}
+
+.carousel3DSection {
+  border: 1px solid rgba(29, 233, 182, 0.2);
+  border-radius: 18px;
+  background: linear-gradient(175deg, rgba(2, 17, 23, 0.9), rgba(2, 14, 20, 0.94));
+  box-shadow: 0 18px 34px rgba(1, 8, 12, 0.36);
+  overflow: hidden;
+}
+
+.carousel3DHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.7rem 0.9rem;
+  border-bottom: 1px solid rgba(29, 233, 182, 0.18);
+  background: rgba(2, 18, 24, 0.7);
+}
+
+.carousel3DHeader h3,
+.carousel3DHeader p {
+  margin: 0;
+}
+
+.carousel3DHeader h3 {
+  font-size: 0.95rem;
+  color: #dcfff4;
+}
+
+.carousel3DHeader p {
+  font-size: 0.76rem;
+  color: rgba(224, 242, 241, 0.76);
+}
+
+.carousel3DViewport {
+  position: relative;
+  min-height: 380px;
+  height: clamp(340px, 42vh, 460px);
+  perspective: 1500px;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 50%, rgba(29, 233, 182, 0.12), rgba(1, 8, 12, 0.04) 58%, transparent 70%);
+}
+
+.carousel3DTrack {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  transform-style: preserve-3d;
+  animation: carouselSpin var(--carousel-duration, 30s) linear infinite;
+}
+
+.carousel3DTrackReverse {
+  animation-direction: reverse;
+}
+
+.carousel3DOrbitCard {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: clamp(128px, 12.4vw, 170px);
+  height: clamp(182px, 17.4vw, 228px);
+  transform: translate3d(-50%, -50%, 0) rotateY(var(--carousel-angle)) translateZ(clamp(235px, 28vw, 360px));
+  perspective: 1200px;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  cursor: pointer;
+}
+
+.carousel3DCardInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  transform: rotateY(0deg);
+  transition: transform 0.98s cubic-bezier(0.22, 0.74, 0.2, 1);
+  opacity: 0;
+  animation: carouselCardEnter 0.95s cubic-bezier(0.2, 0.75, 0.24, 1) forwards;
+  animation-delay: var(--entry-delay);
+  will-change: transform;
+}
+
+.carousel3DCardInnerFlipped {
+  transform: rotateY(180deg);
+}
+
+.carousel3DCardFace {
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+
+.carousel3DCardFront {
+  transform: rotateY(0deg) translateZ(1px);
+  border: 1px solid rgba(29, 233, 182, 0.35);
+  background: linear-gradient(180deg, rgba(8, 36, 46, 0.94), rgba(3, 19, 25, 0.96));
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.34);
+  z-index: 2;
+  pointer-events: auto;
+}
+
+.carousel3DCardBack {
+  transform: rotateY(180deg) translateZ(1px);
+  border: 1px solid rgba(29, 233, 182, 0.35);
+  background: linear-gradient(170deg, rgba(6, 36, 42, 0.98), rgba(3, 18, 22, 0.98));
+  display: grid;
+  align-content: stretch;
+  grid-template-rows: auto auto minmax(0, 1fr) auto;
+  gap: 0.42rem;
+  padding: 0.62rem;
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.34);
+  overflow-x: hidden;
+  overflow-y: auto;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.carousel3DCardInnerFlipped .carousel3DCardFront {
+  pointer-events: none;
+}
+
+.carousel3DCardInnerFlipped .carousel3DCardBack {
+  pointer-events: auto;
+}
+
+.carousel3DCardBack strong {
+  color: #dbfff3;
+  font-size: 0.78rem;
+}
+
+.carousel3DBackMeta {
+  display: flex;
+  gap: 0.42rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.carousel3DBackMeta span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid rgba(29, 233, 182, 0.3);
+  background: rgba(6, 28, 36, 0.62);
+  color: rgba(230, 249, 246, 0.9);
+  font-size: 0.62rem;
+  line-height: 1;
+}
+
+.carousel3DCardBack p {
+  margin: 0;
+  color: rgba(224, 242, 241, 0.8);
+  font-size: 0.72rem;
+  line-height: 1.35;
+}
+
+.carousel3DBackContent {
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 0.1rem;
+  display: grid;
+  align-content: start;
+  gap: 0.34rem;
+}
+
+.carousel3DBackDescription {
+  color: rgba(231, 247, 243, 0.9);
+}
+
+.carousel3DBackList {
+  margin: 0;
+  padding-left: 0.95rem;
+  display: grid;
+  gap: 0.18rem;
+  color: rgba(224, 242, 241, 0.88);
+  font-size: 0.63rem;
+}
+
+.carousel3DBackList li {
+  line-height: 1.3;
+}
+
+.carousel3DBackTags {
+  margin: 0;
+  color: rgba(155, 228, 212, 0.86);
+  font-size: 0.6rem;
+  line-height: 1.35;
+  letter-spacing: 0.03em;
+}
+
+.carousel3DCardBackActions {
+  margin-top: auto;
+  display: flex;
+  gap: 0.34rem;
+  flex-wrap: wrap;
+}
+
+.carousel3DCardBack button {
+  border: 1px solid rgba(29, 233, 182, 0.36);
+  border-radius: 8px;
+  background: rgba(29, 233, 182, 0.18);
+  color: #dbfff3;
+  padding: 0.26rem 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.carousel3DCardMedia {
+  position: relative;
+  height: 68%;
+  border-bottom: 1px solid rgba(29, 233, 182, 0.2);
+}
+
+.carousel3DCardMedia img,
+.carousel3DCardMedia video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.carousel3DCardFallback {
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(circle at 28% 20%, rgba(29, 233, 182, 0.32), transparent 46%),
+    linear-gradient(170deg, rgba(8, 38, 44, 0.95), rgba(3, 19, 25, 0.96));
+}
+
+.carousel3DCardAura {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent 62%, rgba(29, 233, 182, 0.16));
+}
+
+.carousel3DCardInfo {
+  height: 32%;
+  display: grid;
+  grid-template-rows: auto auto auto;
+  gap: 0.2rem;
+  align-content: center;
+  padding: 0.36rem 0.48rem;
+}
+
+.carousel3DCardInfo p,
+.carousel3DCardInfo span {
+  margin: 0;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+}
+
+.carousel3DCardInfo p {
+  color: #dcfff4;
+  font-size: 0.73rem;
+  font-weight: 700;
+  line-height: 1.18;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+}
+
+.carousel3DCardInfo span {
+  color: rgba(224, 242, 241, 0.72);
+  font-size: 0.64rem;
+  line-height: 1.16;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+}
+
+.carousel3DCardInfo button {
+  width: fit-content;
+  border: 1px solid rgba(29, 233, 182, 0.36);
+  border-radius: 999px;
+  background: rgba(29, 233, 182, 0.18);
+  color: #dcfff4;
+  padding: 0.16rem 0.45rem;
+  font-size: 0.64rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.carousel3DCardBackActions button:last-child {
+  background: rgba(20, 125, 117, 0.34);
+}
+
+.carouselVideoModalBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 160;
+  background: rgba(2, 12, 16, 0.82);
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+
+.carouselVideoModal {
+  width: min(860px, 100%);
+  border-radius: 14px;
+  border: 1px solid rgba(29, 233, 182, 0.28);
+  background: linear-gradient(170deg, rgba(7, 36, 44, 0.98), rgba(3, 19, 25, 0.98));
+  overflow: hidden;
+  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.44);
+}
+
+.carouselVideoModalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.64rem 0.78rem;
+  border-bottom: 1px solid rgba(29, 233, 182, 0.2);
+}
+
+.carouselVideoModalHeader p {
+  margin: 0;
+  color: #dcfff4;
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.carouselVideoModalHeader button {
+  border: 1px solid rgba(29, 233, 182, 0.36);
+  border-radius: 8px;
+  background: rgba(29, 233, 182, 0.16);
+  color: #dcfff4;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.26rem 0.56rem;
+  cursor: pointer;
+}
+
+.carouselVideoPlayer {
+  width: 100%;
+  max-height: 72vh;
+  background: #000;
+  display: block;
+}
+
+@keyframes carouselSpin {
+  from {
+    transform: rotateX(-8deg) rotateY(0deg);
+  }
+  to {
+    transform: rotateX(-8deg) rotateY(360deg);
+  }
+}
+
+@keyframes carouselCardEnter {
+  0% {
+    opacity: 0;
+    filter: blur(1.8px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+  }
+}

@@ -1,0 +1,301 @@
+﻿.esp32Panel {
+  margin-top: 0.8rem;
+  display: grid;
+  gap: 0.9rem;
+}
+
+.esp32Hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+  gap: 0.9rem;
+}
+
+.esp32HeroCopy,
+.esp32ActionBlock,
+.esp32Card,
+.esp32TelemetryCard {
+  background: rgba(224, 242, 241, 0.08);
+  border: 1px solid var(--admin-border-glass);
+  border-radius: 16px;
+  backdrop-filter: blur(14px);
+}
+
+.esp32HeroCopy,
+.esp32ActionBlock,
+.esp32Card {
+  padding: 1rem;
+}
+
+.esp32Badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(29, 233, 182, 0.14);
+  color: var(--admin-highlight);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.esp32HeroCopy h3,
+.esp32Card h4 {
+  margin: 0.45rem 0 0;
+}
+
+.esp32HeroCopy p,
+.esp32MetaText {
+  margin: 0.45rem 0 0;
+  color: var(--admin-text-soft);
+}
+
+.esp32ActionBlock {
+  display: grid;
+  gap: 0.75rem;
+  align-content: start;
+}
+
+.esp32StatusPill {
+  display: inline-flex;
+  width: fit-content;
+  padding: 0.28rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(224, 242, 241, 0.16);
+  color: var(--admin-foam);
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.esp32StatusOnline {
+  background: rgba(29, 233, 182, 0.2);
+  color: #d8fff4;
+}
+
+.esp32ActionRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.esp32PrimaryButton,
+.esp32SecondaryButton,
+.esp32GhostButton {
+  border-radius: 10px;
+  padding: 0.58rem 0.85rem;
+  font-size: 0.83rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.esp32PrimaryButton {
+  border: 0;
+  background: linear-gradient(135deg, var(--admin-highlight), var(--admin-lagoon));
+  color: var(--admin-deep-sea-blue);
+}
+
+.esp32SecondaryButton {
+  border: 1px solid rgba(29, 233, 182, 0.3);
+  background: rgba(20, 125, 117, 0.24);
+  color: var(--admin-foam);
+}
+
+.esp32GhostButton {
+  border: 1px solid rgba(224, 242, 241, 0.22);
+  background: rgba(224, 242, 241, 0.08);
+  color: var(--admin-foam);
+}
+
+.esp32PrimaryButton:disabled,
+.esp32SecondaryButton:disabled,
+.esp32GhostButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.esp32ErrorBox,
+.esp32WarningBox {
+  margin: 0;
+  padding: 0.8rem 0.95rem;
+  border-radius: 14px;
+  border: 1px solid var(--admin-border-glass);
+}
+
+.esp32ErrorBox {
+  background: rgba(96, 20, 31, 0.38);
+  color: #ffd8de;
+}
+
+.esp32WarningBox {
+  background: rgba(106, 84, 18, 0.28);
+  color: #fff1c8;
+}
+
+.esp32Grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0.8rem;
+}
+
+.esp32SliderRow {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.8rem;
+  align-items: center;
+  margin-top: 0.75rem;
+}
+
+.esp32Slider {
+  width: 100%;
+  accent-color: var(--admin-highlight);
+}
+
+.esp32ProfileRow {
+  margin-top: 0.75rem;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.esp32ProfileLabel {
+  font-size: 0.78rem;
+  color: var(--admin-text-soft);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.esp32ProfileSelect {
+  border: 1px solid rgba(29, 233, 182, 0.3);
+  border-radius: 10px;
+  background: rgba(2, 42, 40, 0.35);
+  color: var(--admin-text-strong);
+  padding: 0.45rem 0.55rem;
+  font-size: 0.84rem;
+  outline: none;
+}
+
+.esp32ProfileSelect:focus {
+  border-color: var(--admin-highlight);
+  box-shadow: 0 0 0 3px rgba(29, 233, 182, 0.18);
+}
+
+.esp32List {
+  margin: 0.7rem 0 0;
+  padding-left: 1rem;
+  display: grid;
+  gap: 0.35rem;
+  color: var(--admin-text-soft);
+}
+
+.esp32TelemetryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.75rem;
+}
+
+.esp32TelemetryCard {
+  padding: 0.85rem;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.esp32TelemetryCard span {
+  color: var(--admin-text-soft);
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.esp32TelemetryCard strong {
+  font-size: 1rem;
+  color: var(--admin-text-strong);
+}
+
+.esp32PinsGrid {
+  margin-top: 0.8rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.6rem;
+}
+
+.esp32PinItem {
+  border-radius: 12px;
+  border: 1px solid rgba(29, 233, 182, 0.16);
+  background: rgba(224, 242, 241, 0.06);
+  padding: 0.7rem;
+  display: grid;
+  gap: 0.18rem;
+}
+
+.esp32PinItem strong {
+  color: var(--admin-highlight);
+}
+
+.esp32PinItem span {
+  color: var(--admin-text-soft);
+  font-size: 0.8rem;
+}
+
+.esp32PointerOverlay {
+  position: fixed;
+  width: 48px;
+  height: 48px;
+  transform: translate(-50%, -50%);
+  z-index: 120;
+  pointer-events: none;
+  display: grid;
+  place-items: center;
+}
+
+.esp32PointerRing {
+  width: 48px;
+  height: 48px;
+  transform: rotate(-90deg);
+}
+
+.esp32PointerRingTrack,
+.esp32PointerRingProgress {
+  fill: none;
+  stroke-width: 3.5;
+}
+
+.esp32PointerRingTrack {
+  stroke: rgba(224, 242, 241, 0.24);
+}
+
+.esp32PointerRingProgress {
+  stroke: var(--admin-highlight);
+  stroke-linecap: round;
+  transition: stroke-dashoffset 90ms linear;
+  filter: drop-shadow(0 0 8px rgba(29, 233, 182, 0.5));
+}
+
+.esp32PointerDot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--admin-highlight);
+  box-shadow: 0 0 0 4px rgba(29, 233, 182, 0.14);
+}
+
+.esp32TargetOutline {
+  position: fixed;
+  border-radius: 14px;
+  border: 1px solid rgba(29, 233, 182, 0.9);
+  box-shadow: 0 0 0 4px rgba(29, 233, 182, 0.12);
+  z-index: 118;
+  pointer-events: none;
+}
+
+.esp32TargetLabel {
+  position: absolute;
+  left: 0;
+  top: -1.95rem;
+  padding: 0.24rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(3, 53, 53, 0.92);
+  color: var(--admin-foam);
+  font-size: 0.72rem;
+  white-space: nowrap;
+}

@@ -25,9 +25,17 @@ const RegisterPanel = ({ onCambiarModo }: RegisterPanelProps) => {
     return new RegisterUseCase(new RegisterApiAdapter());
   }, []);
 
+  const passwordStrength = useMemo(() => getPasswordStrength(contrasena), [contrasena]);
+
   const manejarEnvio = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setError("");
+
+    if (passwordStrength.level !== "buena") {
+      setError("La contraseña debe cumplir todos los requisitos de seguridad.");
+      return;
+    }
+
     setCargando(true);
 
     try {
@@ -59,7 +67,7 @@ const RegisterPanel = ({ onCambiarModo }: RegisterPanelProps) => {
       correoElectronico={correoElectronico}
       contrasena={contrasena}
       confirmarContrasena={confirmarContrasena}
-      passwordStrength={getPasswordStrength(contrasena)}
+      passwordStrength={passwordStrength}
       onNombreCompletoChange={setNombreCompleto}
       onApellidoPaternoChange={setApellidoPaterno}
       onApellidoMaternoChange={setApellidoMaterno}

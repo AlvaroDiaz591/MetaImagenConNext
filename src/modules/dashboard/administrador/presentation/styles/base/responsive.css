@@ -1,0 +1,85 @@
+@media (max-width: 920px) {
+  .headerActions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .esp32Hero {
+    grid-template-columns: 1fr;
+  }
+
+  .esp32PinsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .portalGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    overflow: hidden;
+  }
+
+  .sidebarList {
+    display: flex;
+    overflow: auto;
+    padding-bottom: 0.2rem;
+  }
+
+  .sidebarItem {
+    min-width: 230px;
+  }
+
+  .compactRow {
+    grid-template-columns: 1fr;
+    gap: 0.45rem;
+  }
+
+  .rowActions {
+    justify-content: flex-start;
+  }
+
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .treatmentsGrid {
+    grid-template-columns: 1fr;
+    max-height: none;
+  }
+
+  .treatmentMediaWrap {
+    height: 156px;
+  }
+
+  .treatmentActions {
+    flex-wrap: wrap;
+  }
+
+  .treatmentVideoModalBackdrop {
+    padding: 0.7rem;
+  }
+
+  .treatmentVideoModalHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .treatmentVideoPlayer {
+    max-height: 58vh;
+  }
+
+  .toolbarRight {
+    justify-items: start;
+  }
+
+  .contentGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .paginationBar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

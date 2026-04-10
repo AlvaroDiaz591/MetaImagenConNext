@@ -1,0 +1,10 @@
+:root {
+  --patient-bg-1: #03060d;
+  --patient-bg-2: #041417;
+  --patient-bg-3: #0b4f4a;
+  --patient-foam: #e0f2f1;
+  --patient-highlight: #1de9b6;
+  --patient-lagoon: #147d75;
+  --patient-deep: #043536;
+  --patient-line: rgba(255, 255, 255, 0.76);
+}
