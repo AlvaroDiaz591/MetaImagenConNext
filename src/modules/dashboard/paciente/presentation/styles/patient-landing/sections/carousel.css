@@ -1,16 +1,16 @@
 .services3DCarouselsRoot {
-  width: min(1180px, 100%);
+  width: 100%;
   display: grid;
-  gap: 1.25rem;
+  gap: 1.5rem;
   align-content: start;
 }
 
 .carousel3DSection {
-  border: 1px solid rgba(29, 233, 182, 0.2);
-  border-radius: 18px;
-  background: linear-gradient(175deg, rgba(2, 17, 23, 0.9), rgba(2, 14, 20, 0.94));
-  box-shadow: 0 18px 34px rgba(1, 8, 12, 0.36);
-  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  overflow: visible;
 }
 
 .carousel3DHeader {
@@ -18,9 +18,9 @@
   justify-content: space-between;
   align-items: center;
   gap: 0.8rem;
-  padding: 0.7rem 0.9rem;
-  border-bottom: 1px solid rgba(29, 233, 182, 0.18);
-  background: rgba(2, 18, 24, 0.7);
+  padding: 0 0 0.8rem;
+  border-bottom: 1px solid rgba(36, 241, 168, 0.14);
+  background: none;
 }
 
 .carousel3DHeader h3,
@@ -30,12 +30,12 @@
 
 .carousel3DHeader h3 {
   font-size: 0.95rem;
-  color: #dcfff4;
+  color: var(--patient-highlight-strong);
 }
 
 .carousel3DHeader p {
   font-size: 0.76rem;
-  color: rgba(224, 242, 241, 0.76);
+  color: rgba(236, 247, 241, 0.68);
 }
 
 .carousel3DViewport {
@@ -44,7 +44,11 @@
   height: clamp(340px, 42vh, 460px);
   perspective: 1500px;
   overflow: hidden;
-  background: radial-gradient(circle at 50% 50%, rgba(29, 233, 182, 0.12), rgba(1, 8, 12, 0.04) 58%, transparent 70%);
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(36, 241, 168, 0.18), rgba(1, 8, 12, 0.04) 58%, transparent 70%),
+    linear-gradient(180deg, rgba(2, 20, 13, 0.68), rgba(2, 8, 6, 0.24));
+  outline: 1px solid rgba(36, 241, 168, 0.14);
 }
 
 .carousel3DTrack {
@@ -107,23 +111,23 @@
 
 .carousel3DCardFront {
   transform: rotateY(0deg) translateZ(1px);
-  border: 1px solid rgba(29, 233, 182, 0.35);
-  background: linear-gradient(180deg, rgba(8, 36, 46, 0.94), rgba(3, 19, 25, 0.96));
-  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.34);
+  border: 1px solid rgba(146, 255, 215, 0.22);
+  background: linear-gradient(180deg, rgba(8, 45, 30, 0.98), rgba(4, 22, 15, 0.98));
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.22);
   z-index: 2;
   pointer-events: auto;
 }
 
 .carousel3DCardBack {
   transform: rotateY(180deg) translateZ(1px);
-  border: 1px solid rgba(29, 233, 182, 0.35);
-  background: linear-gradient(170deg, rgba(6, 36, 42, 0.98), rgba(3, 18, 22, 0.98));
+  border: 1px solid rgba(146, 255, 215, 0.22);
+  background: linear-gradient(170deg, rgba(7, 42, 28, 0.98), rgba(4, 22, 15, 0.98));
   display: grid;
   align-content: stretch;
   grid-template-rows: auto auto minmax(0, 1fr) auto;
   gap: 0.42rem;
   padding: 0.62rem;
-  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.34);
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.28);
   overflow-x: hidden;
   overflow-y: auto;
   z-index: 1;
@@ -139,7 +143,7 @@
 }
 
 .carousel3DCardBack strong {
-  color: #dbfff3;
+  color: var(--patient-highlight-strong);
   font-size: 0.78rem;
 }
 
@@ -156,8 +160,8 @@
   justify-content: center;
   padding: 0.2rem 0.5rem;
   border-radius: 999px;
-  border: 1px solid rgba(29, 233, 182, 0.3);
-  background: rgba(6, 28, 36, 0.62);
+  border: 1px solid var(--patient-border);
+  background: rgba(36, 241, 168, 0.06);
   color: rgba(230, 249, 246, 0.9);
   font-size: 0.62rem;
   line-height: 1;
@@ -165,7 +169,7 @@
 
 .carousel3DCardBack p {
   margin: 0;
-  color: rgba(224, 242, 241, 0.8);
+  color: rgba(236, 247, 241, 0.8);
   font-size: 0.72rem;
   line-height: 1.35;
 }
@@ -198,7 +202,7 @@
 
 .carousel3DBackTags {
   margin: 0;
-  color: rgba(155, 228, 212, 0.86);
+  color: rgba(191, 223, 205, 0.86);
   font-size: 0.6rem;
   line-height: 1.35;
   letter-spacing: 0.03em;
@@ -212,10 +216,10 @@
 }
 
 .carousel3DCardBack button {
-  border: 1px solid rgba(29, 233, 182, 0.36);
+  border: 1px solid var(--patient-border-strong);
   border-radius: 8px;
-  background: rgba(29, 233, 182, 0.18);
-  color: #dbfff3;
+  background: rgba(36, 241, 168, 0.1);
+  color: var(--patient-foam);
   padding: 0.26rem 0.5rem;
   font-size: 0.7rem;
   font-weight: 700;
@@ -225,7 +229,7 @@
 .carousel3DCardMedia {
   position: relative;
   height: 68%;
-  border-bottom: 1px solid rgba(29, 233, 182, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .carousel3DCardMedia img,
@@ -240,15 +244,15 @@
   width: 100%;
   height: 100%;
   background:
-    radial-gradient(circle at 28% 20%, rgba(29, 233, 182, 0.32), transparent 46%),
-    linear-gradient(170deg, rgba(8, 38, 44, 0.95), rgba(3, 19, 25, 0.96));
+    radial-gradient(circle at 28% 20%, rgba(207, 232, 218, 0.22), transparent 46%),
+    linear-gradient(170deg, rgba(17, 42, 35, 0.95), rgba(8, 22, 18, 0.96));
 }
 
 .carousel3DCardAura {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(180deg, transparent 62%, rgba(29, 233, 182, 0.16));
+  background: linear-gradient(180deg, transparent 56%, rgba(36, 241, 168, 0.26));
 }
 
 .carousel3DCardInfo {
@@ -270,7 +274,7 @@
 }
 
 .carousel3DCardInfo p {
-  color: #dcfff4;
+  color: var(--patient-highlight-strong);
   font-size: 0.73rem;
   font-weight: 700;
   line-height: 1.18;
@@ -279,7 +283,7 @@
 }
 
 .carousel3DCardInfo span {
-  color: rgba(224, 242, 241, 0.72);
+  color: rgba(236, 247, 241, 0.68);
   font-size: 0.64rem;
   line-height: 1.16;
   line-clamp: 2;
@@ -288,10 +292,10 @@
 
 .carousel3DCardInfo button {
   width: fit-content;
-  border: 1px solid rgba(29, 233, 182, 0.36);
+  border: 1px solid var(--patient-border-strong);
   border-radius: 999px;
-  background: rgba(29, 233, 182, 0.18);
-  color: #dcfff4;
+  background: rgba(36, 241, 168, 0.1);
+  color: var(--patient-foam);
   padding: 0.16rem 0.45rem;
   font-size: 0.64rem;
   font-weight: 700;
@@ -299,14 +303,14 @@
 }
 
 .carousel3DCardBackActions button:last-child {
-  background: rgba(20, 125, 117, 0.34);
+  background: rgba(76, 143, 118, 0.36);
 }
 
 .carouselVideoModalBackdrop {
   position: fixed;
   inset: 0;
   z-index: 160;
-  background: rgba(2, 12, 16, 0.82);
+  background: rgba(2, 10, 8, 0.84);
   display: grid;
   place-items: center;
   padding: 1rem;
@@ -314,11 +318,11 @@
 
 .carouselVideoModal {
   width: min(860px, 100%);
-  border-radius: 14px;
-  border: 1px solid rgba(29, 233, 182, 0.28);
-  background: linear-gradient(170deg, rgba(7, 36, 44, 0.98), rgba(3, 19, 25, 0.98));
+  border-radius: 18px;
+  border: 1px solid var(--patient-border);
+  background: linear-gradient(170deg, rgba(12, 34, 27, 0.98), rgba(7, 19, 16, 0.98));
   overflow: hidden;
-  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.44);
+  box-shadow: 0 26px 42px rgba(0, 0, 0, 0.32);
 }
 
 .carouselVideoModalHeader {
@@ -327,21 +331,21 @@
   align-items: center;
   gap: 0.8rem;
   padding: 0.64rem 0.78rem;
-  border-bottom: 1px solid rgba(29, 233, 182, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .carouselVideoModalHeader p {
   margin: 0;
-  color: #dcfff4;
+  color: var(--patient-highlight-strong);
   font-size: 0.86rem;
   font-weight: 700;
 }
 
 .carouselVideoModalHeader button {
-  border: 1px solid rgba(29, 233, 182, 0.36);
+  border: 1px solid var(--patient-border-strong);
   border-radius: 8px;
-  background: rgba(29, 233, 182, 0.16);
-  color: #dcfff4;
+  background: rgba(245, 251, 247, 0.08);
+  color: var(--patient-foam);
   font-size: 0.75rem;
   font-weight: 700;
   padding: 0.26rem 0.56rem;

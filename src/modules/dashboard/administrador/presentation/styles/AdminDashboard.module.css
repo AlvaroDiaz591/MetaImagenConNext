@@ -2,6 +2,7 @@
 @import "./base/dashboard-base.css";
 @import "./modules/esp32.css";
 @import "./modules/treatments.css";
+@import "./modules/maps.css";
 @import "./theme/theme-light.css";
 @import "./base/animations.css";
 @import "./base/responsive.css";

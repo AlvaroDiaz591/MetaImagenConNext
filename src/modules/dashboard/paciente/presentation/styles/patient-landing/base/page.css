@@ -1,10 +1,12 @@
 .pageRoot {
   min-height: 100vh;
   background:
-    radial-gradient(circle at 15% 20%, rgba(29, 233, 182, 0.16), transparent 44%),
-    radial-gradient(circle at 84% 18%, rgba(20, 125, 117, 0.2), transparent 40%),
-    linear-gradient(140deg, var(--patient-bg-1), var(--patient-bg-2) 52%, #021a22);
+    radial-gradient(circle at 14% 10%, rgba(36, 241, 168, 0.2), transparent 24%),
+    radial-gradient(circle at 84% 12%, rgba(82, 255, 194, 0.16), transparent 28%),
+    radial-gradient(circle at 50% 92%, rgba(16, 207, 133, 0.18), transparent 34%),
+    linear-gradient(145deg, var(--patient-bg-1), var(--patient-bg-2) 42%, var(--patient-bg-3));
   color: var(--patient-foam);
+  font-family: var(--font-geist-sans), "Segoe UI", sans-serif;
   position: relative;
   overflow-x: clip;
 }
@@ -14,7 +16,21 @@
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.18) 1px, transparent 1px);
-  background-size: 3px 3px;
-  opacity: 0.08;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 80px 80px;
+  opacity: 0.16;
+}
+
+.pageRoot::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at top center, rgba(36, 241, 168, 0.14), transparent 34%),
+    radial-gradient(circle at 50% 8%, rgba(146, 255, 215, 0.08), transparent 24%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 24%);
+  opacity: 0.7;
 }

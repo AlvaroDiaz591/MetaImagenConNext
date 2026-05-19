@@ -1,14 +1,24 @@
 @media (max-width: 1024px) {
+  .hero {
+    padding-top: 2.6rem;
+  }
+
   .heroContent {
     grid-template-columns: 1fr;
+    padding-top: 5rem;
   }
 
   .heroRingsColumn {
-    min-height: clamp(760px, 98vh, 980px);
+    min-height: clamp(820px, 102vh, 1040px);
+  }
+
+  .heroExperienceHeader,
+  .sectionHeader {
+    grid-template-columns: 1fr;
   }
 
   .services3DCarouselsRoot {
-    width: min(980px, 100%);
+    width: 100%;
   }
 
   .carousel3DViewport {
@@ -21,15 +31,83 @@
     height: clamp(170px, 21vw, 206px);
     transform: translate3d(-50%, -50%, 0) rotateY(var(--carousel-angle)) translateZ(clamp(205px, 24vw, 290px));
   }
+
+  .locationCard {
+    grid-template-columns: 1fr;
+  }
+
+  .locationMedia {
+    min-height: 320px;
+  }
 }
 
 @media (max-width: 720px) {
+  .hero {
+    padding: 2.4rem 0.82rem 4rem;
+  }
+
+  .backgroundWord {
+    top: 0.2rem;
+    font-size: clamp(3.8rem, 22vw, 8.4rem);
+  }
+
+  .heroTextColumn {
+    padding: 0;
+  }
+
+  .heroTextColumn h2 {
+    max-width: 100%;
+    font-size: clamp(1.9rem, 8vw, 3rem);
+  }
+
+  .heroLead {
+    font-size: 0.9rem;
+  }
+
+  .ctaRow {
+    flex-direction: column;
+  }
+
+  .heroPrimaryButton,
+  .heroSecondaryButton {
+    width: 100%;
+  }
+
+  .heroStatsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .heroStatCard + .heroStatCard {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .heroSpotlightCard {
+    grid-template-columns: 1fr;
+  }
+
+  .heroExperienceHeader {
+    padding: 0 0 0.9rem;
+  }
+
+  .heroExperienceSelection strong {
+    font-size: 0.82rem;
+  }
+
+  .sectionHeader {
+    margin-bottom: 0.85rem;
+  }
+
+  .aboutGrid {
+    grid-template-columns: 1fr;
+  }
+
   .services3DCarouselsRoot {
     gap: 0.9rem;
   }
 
   .carousel3DHeader {
-    padding: 0.58rem 0.65rem;
+    padding: 0 0 0.6rem;
   }
 
   .carousel3DHeader h3 {
@@ -68,24 +146,74 @@
   }
 
   .topBar {
-    padding: 0.82rem 0.65rem 0.82rem 5.8rem;
-    align-items: flex-start;
+    min-height: 72px;
+    padding: 0.86rem 0.65rem 0.86rem 5.4rem;
   }
 
   .mainNav {
-    width: 100%;
-    border-radius: 18px;
-    padding: 0.28rem;
+    min-width: 0;
+    width: calc(100% - 4.5rem);
+    max-width: none;
   }
 
-  .mainNav button {
-    flex: 1 1 calc(50% - 0.3rem);
-    border-radius: 10px;
-    text-align: center;
+  .glassNavButton {
+    min-width: 0;
+    padding: 0.72rem 0.34rem;
+    font-size: 0.68rem;
+  }
+
+  .topBarActions {
+    right: 0.65rem;
   }
 
   .brandBadgeDocked {
     left: 0.8rem;
     top: 0.8rem;
+  }
+
+  .locationActionRow {
+    justify-content: flex-start;
+  }
+
+  .locationHoursList {
+    grid-template-columns: 1fr;
+  }
+
+  .locationCard {
+    gap: 1rem;
+    padding-bottom: 1.15rem;
+  }
+
+  .locationMedia {
+    min-height: 280px;
+    border-radius: 24px;
+  }
+
+  .agendaSection,
+  .infoSection {
+    padding-top: 1.2rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .heroStatsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .heroContent {
+    padding-top: 4.5rem;
+  }
+
+  .heroSpotlightContent {
+    padding-left: 0.8rem;
+  }
+
+  .agendaAside {
+    padding-left: 0.8rem;
+  }
+
+  .topBarActions button {
+    width: 36px;
+    height: 36px;
   }
 }

@@ -1,113 +1,262 @@
 .hero {
   position: relative;
-  padding: 2.4rem 1.1rem 4rem;
+  width: min(100%, 1920px);
+  margin: 0 auto;
+  padding: clamp(2.4rem, 4vw, 3.6rem) clamp(1rem, 2.5vw, 2.2rem) 5rem;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 430px;
+  pointer-events: none;
+  background: radial-gradient(circle at center, rgba(36, 241, 168, 0.16), transparent 66%);
+  filter: blur(18px);
 }
 
 .backgroundWord {
   position: absolute;
   left: 50%;
-  top: 8rem;
+  top: 0.25rem;
   transform: translateX(-50%);
   margin: 0;
-  font-size: clamp(3.8rem, 18vw, 14rem);
-  letter-spacing: 0.08em;
-  color: rgba(224, 242, 241, 0.08);
+  font-size: clamp(5.2rem, 21vw, 18rem);
+  letter-spacing: 0.14em;
+  color: rgba(146, 255, 215, 0.11);
   white-space: nowrap;
   pointer-events: none;
   user-select: none;
   text-transform: uppercase;
   font-weight: 900;
+  text-shadow: 0 0 28px rgba(36, 241, 168, 0.08);
 }
 
 .heroContent {
   position: relative;
   z-index: 2;
   display: grid;
-  grid-template-columns: minmax(280px, 430px) minmax(0, 1fr);
-  gap: 1rem;
-  align-items: start;
+  grid-template-columns: minmax(360px, 0.82fr) minmax(0, 1.38fr);
+  gap: clamp(1.2rem, 2.5vw, 2.6rem);
+  padding-top: clamp(5.8rem, 9vw, 8.5rem);
+  align-items: stretch;
 }
 
 .heroTextColumn {
   display: grid;
-  gap: 0.9rem;
-  padding: 1rem;
-  border: 1px solid rgba(29, 233, 182, 0.2);
-  border-radius: 16px;
-  background: linear-gradient(170deg, rgba(4, 32, 35, 0.88), rgba(3, 24, 28, 0.8));
-  box-shadow: 0 12px 24px rgba(1, 10, 11, 0.35);
+  gap: 1.1rem;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  overflow: visible;
+}
+
+.heroIntroBadge {
+  width: fit-content;
+  border: 1px solid var(--patient-border-strong);
+  border-radius: 999px;
+  padding: 0.34rem 0.72rem;
+  background: rgba(36, 241, 168, 0.08);
+  color: var(--patient-highlight-strong);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .greeting {
   margin: 0;
-  font-size: 0.76rem;
-  color: #b5f8e8;
+  font-size: 0.78rem;
+  color: var(--patient-highlight-strong);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
 }
 
 .heroTextColumn h2 {
   margin: 0;
-  font-size: clamp(1.36rem, 2.5vw, 2rem);
-  line-height: 1.12;
+  max-width: 12ch;
+  font-size: clamp(2.15rem, 4.4vw, 4.2rem);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+}
+
+.heroHeadlineAccent {
+  display: block;
+  color: var(--patient-highlight-strong);
 }
 
 .heroTextColumn p {
   margin: 0;
-  color: rgba(224, 242, 241, 0.84);
-  line-height: 1.46;
+  color: var(--patient-muted);
+  line-height: 1.55;
+}
+
+.heroLead {
+  max-width: 60ch;
+  font-size: 1rem;
 }
 
 .ctaRow {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.65rem;
 }
 
-.ctaRow button {
-  border: 1px solid rgba(29, 233, 182, 0.36);
+.heroPrimaryButton,
+.heroSecondaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 999px;
-  padding: 0.46rem 0.9rem;
-  background: rgba(29, 233, 182, 0.12);
-  color: #d9fff4;
+  padding: 0.68rem 1.05rem;
   font-weight: 700;
-  font-size: 0.77rem;
+  font-size: 0.8rem;
   cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.heroPrimaryButton {
+  border: 1px solid rgba(210, 255, 236, 0.28);
+  background: linear-gradient(135deg, rgba(164, 255, 220, 0.98), rgba(36, 241, 168, 0.96));
+  color: #032416;
+  box-shadow: 0 18px 32px rgba(20, 255, 173, 0.28);
+}
+
+.heroSecondaryButton {
+  border: 1px solid var(--patient-border);
+  background: rgba(36, 241, 168, 0.06);
+  color: var(--patient-highlight-strong);
+}
+
+.heroPrimaryButton:hover,
+.heroSecondaryButton:hover {
+  transform: translateY(-2px);
+}
+
+.heroPrimaryButton:hover {
+  box-shadow: 0 16px 30px rgba(40, 77, 61, 0.36);
+}
+
+.heroSecondaryButton:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(245, 251, 247, 0.1);
+}
+
+.heroStatsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  padding: 1rem 0;
+  border-top: 1px solid rgba(36, 241, 168, 0.14);
+  border-bottom: 1px solid rgba(36, 241, 168, 0.14);
+}
+
+.heroStatCard {
+  display: grid;
+  gap: 0.22rem;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+
+.heroStatCard + .heroStatCard {
+  padding-left: 1rem;
+  border-left: 1px solid rgba(36, 241, 168, 0.14);
+}
+
+.heroStatValue {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 1.34rem;
+  color: var(--patient-highlight-strong);
+}
+
+.heroStatLabel {
+  font-size: 0.72rem;
+  line-height: 1.35;
+  color: rgba(236, 247, 241, 0.74);
+}
+
+.heroSpotlightCard {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.2rem 0 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+}
+
+.heroSpotlightContent {
+  display: grid;
+  gap: 0.28rem;
+  padding-left: 1rem;
+  border-left: 2px solid rgba(36, 241, 168, 0.34);
+}
+
+.heroSpotlightTag {
+  width: fit-content;
+  border-radius: 999px;
+  padding: 0.22rem 0.58rem;
+  background: rgba(36, 241, 168, 0.12);
+  border: 1px solid rgba(146, 255, 215, 0.2);
+  color: var(--patient-highlight-strong);
+  font-size: 0.67rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.heroSpotlightContent strong {
+  font-size: 1rem;
+  color: var(--patient-foam);
+}
+
+.heroSpotlightContent p,
+.heroSpotlightContent small {
+  margin: 0;
+}
+
+.heroSpotlightContent small {
+  color: rgba(236, 247, 241, 0.66);
 }
 
 .fluidText {
   overflow: hidden;
-  border-top: 1px solid rgba(29, 233, 182, 0.2);
-  border-bottom: 1px solid rgba(29, 233, 182, 0.2);
-  padding: 0.45rem 0;
+  border-top: 1px solid rgba(36, 241, 168, 0.14);
+  border-bottom: 1px solid rgba(36, 241, 168, 0.14);
+  padding: 0.62rem 0;
 }
 
 .fluidText div {
   display: inline-flex;
-  gap: 1.2rem;
+  gap: 1.6rem;
   white-space: nowrap;
   animation: fluidTicker 18s linear infinite;
 }
 
 .fluidText span {
-  font-size: 0.74rem;
+  font-size: 0.76rem;
   text-transform: uppercase;
-  letter-spacing: 0.07em;
-  color: rgba(224, 242, 241, 0.72);
+  letter-spacing: 0.1em;
+  color: rgba(236, 247, 241, 0.66);
 }
 
 .heroRingsColumn {
-  min-height: clamp(820px, 108vh, 1160px);
-  border: 1px solid rgba(29, 233, 182, 0.2);
-  border-radius: 18px;
-  background:
-    radial-gradient(circle at 50% 46%, rgba(29, 233, 182, 0.1), rgba(1, 8, 12, 0.9) 60%),
-    linear-gradient(180deg, rgba(2, 12, 20, 0.95), rgba(2, 9, 14, 0.98));
+  min-height: clamp(840px, 108vh, 1180px);
+  border: 0;
+  border-radius: 0;
+  background: none;
   display: grid;
-  place-items: center;
-  overflow: hidden;
+  grid-template-rows: auto minmax(0, 1fr);
+  align-content: start;
+  overflow: visible;
   position: relative;
-  padding: 1.25rem 0.8rem;
+  padding: 0;
 }
 
 .heroRingsColumn::before {
@@ -122,61 +271,544 @@
     radial-gradient(circle at 67% 66%, rgba(255, 255, 255, 0.75) 0.9px, transparent 1.6px),
     radial-gradient(circle at 84% 29%, rgba(255, 255, 255, 0.8) 0.9px, transparent 1.7px),
     radial-gradient(circle at 91% 79%, rgba(255, 255, 255, 0.75) 1px, transparent 1.8px);
-  opacity: 0.35;
+  opacity: 0.18;
   animation: starTwinkle 6.4s ease-in-out infinite;
 }
 
 .heroRingsColumn::after {
   content: "";
   position: absolute;
-  inset: 18% 10%;
+  inset: 16% 6%;
   pointer-events: none;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(29, 233, 182, 0.18), transparent 68%);
-  filter: blur(14px);
+  background: radial-gradient(circle, rgba(36, 241, 168, 0.18), transparent 68%);
+  filter: blur(22px);
+}
+
+.heroExperienceHeader {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(240px, 0.9fr);
+  gap: 1.2rem;
+  padding: 0 0 1rem;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  border-bottom: 1px solid rgba(36, 241, 168, 0.14);
+}
+
+.heroExperienceCopy,
+.heroExperienceSelection {
+  display: grid;
+  gap: 0.3rem;
+  align-content: start;
+}
+
+.heroExperienceTag {
+  width: fit-content;
+  border-radius: 999px;
+  padding: 0.22rem 0.58rem;
+  border: 1px solid rgba(36, 241, 168, 0.18);
+  background: rgba(36, 241, 168, 0.08);
+  color: var(--patient-highlight-strong);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.heroExperienceCopy h3,
+.heroExperienceCopy p {
+  margin: 0;
+}
+
+.heroExperienceCopy h3 {
+  font-size: 1.08rem;
+  color: var(--patient-foam);
+}
+
+.heroExperienceCopy p {
+  color: rgba(236, 247, 241, 0.74);
+  line-height: 1.46;
+}
+
+.heroExperienceSelection {
+  padding: 0.15rem 0 0 0.95rem;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  border-left: 1px solid rgba(36, 241, 168, 0.18);
+}
+
+.heroExperienceSelection span {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(236, 247, 241, 0.62);
+}
+
+.heroExperienceSelection strong {
+  font-size: 0.94rem;
+  line-height: 1.35;
+  color: var(--patient-foam);
+}
+
+.heroExperienceBody {
+  min-height: 0;
+  display: grid;
+  place-items: center;
+  padding-top: 1rem;
 }
 
 .statusText {
   margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
   font-size: 0.86rem;
-  color: rgba(224, 242, 241, 0.84);
+  color: var(--patient-highlight-strong);
 }
 
 .infoSection {
-  margin-top: 1rem;
-  border: 1px solid rgba(29, 233, 182, 0.16);
-  border-radius: 14px;
-  padding: 0.9rem;
-  background: rgba(3, 18, 23, 0.7);
+  margin-top: 2rem;
+  border: 0;
+  border-top: 1px solid rgba(36, 241, 168, 0.16);
+  border-radius: 0;
+  padding: 1.5rem 0 0;
+  background: none;
+  box-shadow: none;
+  overflow: visible;
 }
 
-.infoSection h3 {
-  margin: 0 0 0.35rem;
-  font-size: 1rem;
+.infoSectionPlain {
+  background: none;
 }
 
-.infoSection p {
+.sectionHeader {
+  display: grid;
+  grid-template-columns: minmax(180px, 220px) minmax(0, 1fr);
+  gap: 1.4rem;
+  align-items: start;
+  margin-bottom: 1.25rem;
+}
+
+.sectionEyebrow {
+  width: fit-content;
+  border-radius: 999px;
+  border: 1px solid var(--patient-border-strong);
+  background: rgba(36, 241, 168, 0.08);
+  color: var(--patient-highlight-strong);
+  padding: 0.34rem 0.68rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sectionHeader h3 {
   margin: 0;
-  color: rgba(224, 242, 241, 0.78);
+  font-size: clamp(1.32rem, 2.8vw, 2rem);
+  line-height: 1.08;
+}
+
+.sectionLead,
+.sectionFallback {
+  margin: 0.38rem 0 0;
+  color: var(--patient-muted);
+  line-height: 1.55;
+}
+
+.locationGrid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.locationCard {
+  border: 0;
+  border-radius: 0;
+  overflow: visible;
+  background: none;
+  display: grid;
+  grid-template-columns: minmax(560px, 840px) minmax(280px, 1fr);
+  gap: 1.4rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(36, 241, 168, 0.12);
+  align-items: start;
+}
+
+.locationCard:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.locationMedia {
+  position: relative;
+  min-height: 360px;
+  aspect-ratio: 1.45 / 1;
+  border-radius: 32px;
+  overflow: hidden;
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.24);
+  outline: 1px solid rgba(146, 255, 215, 0.16);
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.86), rgba(245, 251, 248, 0.52) 55%, transparent 70%),
+    linear-gradient(180deg, rgba(247, 251, 249, 0.98), rgba(232, 241, 237, 0.96));
+}
+
+.locationMedia::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(223, 236, 230, 0.22)),
+    radial-gradient(circle at 20% 18%, rgba(255, 255, 255, 0.42), transparent 30%);
+}
+
+.locationMapShell {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.locationMapActions {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 600;
+  display: flex;
+  gap: 0.6rem;
+}
+
+.locationRouteButton {
+  border: 1px solid rgba(10, 91, 61, 0.16);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #08563a;
+  padding: 0.72rem 1rem;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  box-shadow: 0 14px 32px rgba(8, 72, 49, 0.14);
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.locationRouteButton:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 18px 34px rgba(8, 72, 49, 0.2);
+  background: rgba(255, 255, 255, 0.96);
+}
+
+.locationRouteButton:disabled {
+  opacity: 0.64;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 0 10px 24px rgba(8, 72, 49, 0.1);
+}
+
+.locationMapContainer {
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  border-radius: inherit;
+  overflow: hidden;
+}
+
+.locationMapLoading,
+.locationMapFallback {
+  width: 100%;
+  min-height: 360px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 0.55rem;
+  padding: 1.2rem;
+  text-align: center;
+  color: rgba(236, 247, 241, 0.84);
+}
+
+.locationMapLoading {
+  border: 1px dashed rgba(36, 241, 168, 0.2);
+  background: linear-gradient(180deg, rgba(248, 252, 250, 0.96), rgba(234, 243, 239, 0.98));
+  color: rgba(5, 49, 34, 0.74);
+}
+
+.locationMapFallback strong,
+.locationMapFallback p {
+  margin: 0;
+}
+
+.locationMapFallback strong {
+  color: #07422e;
+}
+
+.locationMapFallback p {
+  max-width: 22rem;
+  color: rgba(7, 66, 46, 0.68);
+}
+
+.locationMapClinicRoot {
+  background: transparent;
+  border: 0;
+}
+
+.locationMapClinic3D {
+  position: relative;
+  width: 52px;
+  height: 70px;
+  display: grid;
+  place-items: center;
+  filter: drop-shadow(0 12px 14px rgba(0, 0, 0, 0.42));
+}
+
+.locationMapClinicPulse {
+  position: absolute;
+  left: 50%;
+  bottom: 7px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  background: rgba(36, 241, 168, 0.34);
+  box-shadow: 0 0 0 0 rgba(36, 241, 168, 0.42);
+  animation: locationMarkerPulse 2.2s ease-out infinite;
+}
+
+.locationMapClinicBadge {
+  position: relative;
+  z-index: 1;
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 15px 15px 18px 18px;
+  background: linear-gradient(160deg, #0d6a49 0%, #24f1a8 52%, #c1ffe7 100%);
+  border: 1px solid rgba(236, 247, 241, 0.92);
+  color: #053122;
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.52),
+    0 10px 18px rgba(36, 241, 168, 0.22);
+  transform: translateY(-5px) rotate(-5deg);
+  animation: locationMarkerFloat 2.4s ease-in-out infinite;
+}
+
+.locationMapClinicBadge::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -12px;
+  width: 12px;
+  height: 18px;
+  transform: translateX(-50%);
+  clip-path: polygon(50% 100%, 0 0, 100% 0);
+  background: linear-gradient(180deg, #24f1a8 0%, #0d6a49 100%);
+}
+
+@keyframes locationMarkerFloat {
+  0% {
+    transform: translateY(-5px) rotate(-5deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(-2deg);
+  }
+  100% {
+    transform: translateY(-5px) rotate(-5deg);
+  }
+}
+
+@keyframes locationMarkerPulse {
+  0% {
+    transform: translateX(-50%) scale(0.86);
+    box-shadow: 0 0 0 0 rgba(36, 241, 168, 0.38);
+  }
+  70% {
+    transform: translateX(-50%) scale(1.9);
+    box-shadow: 0 0 0 14px rgba(36, 241, 168, 0);
+  }
+  100% {
+    transform: translateX(-50%) scale(0.86);
+    box-shadow: 0 0 0 0 rgba(36, 241, 168, 0);
+  }
+}
+
+.locationBody {
+  padding: 0;
+  display: grid;
+  gap: 0.65rem;
+  align-content: start;
+}
+
+.locationBody h4,
+.locationBody p {
+  margin: 0;
+}
+
+.locationIdentity {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.locationBadge {
+  width: fit-content;
+  border-radius: 999px;
+  border: 1px solid rgba(146, 255, 215, 0.22);
+  background: rgba(36, 241, 168, 0.1);
+  color: var(--patient-highlight-strong);
+  padding: 0.18rem 0.54rem;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.locationBody h4 {
+  font-size: 1.08rem;
+  color: var(--patient-highlight-strong);
+}
+
+.locationDescription {
+  color: rgba(236, 247, 241, 0.84);
+  line-height: 1.52;
+}
+
+.locationMetaRow {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.locationMetaRow span {
+  border-radius: 999px;
+  border: 1px solid var(--patient-border);
+  background: rgba(36, 241, 168, 0.05);
+  color: rgba(236, 247, 241, 0.84);
+  font-size: 0.67rem;
+  padding: 0.2rem 0.52rem;
+}
+
+.locationHoursBlock {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.locationHoursBlock strong {
+  font-size: 0.73rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--patient-highlight-strong);
+}
+
+.locationHoursList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.4rem;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+}
+
+.locationHoursItem {
+  border: 0;
+  border-left: 2px solid rgba(36, 241, 168, 0.24);
+  border-radius: 0;
+  background: none;
+  padding: 0.18rem 0 0.18rem 0.72rem;
+  display: grid;
+  gap: 0.15rem;
+}
+
+.locationDayLabel {
+  color: var(--patient-highlight-strong);
+  font-size: 0.63rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.locationDayValue {
+  color: rgba(236, 247, 241, 0.9);
+  font-size: 0.68rem;
+}
+
+.locationHoursFallback {
+  color: rgba(236, 247, 241, 0.72);
+  font-size: 0.7rem;
+}
+
+.locationActionRow {
+  margin-top: 0.45rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.65rem;
+}
+
+.aboutGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.9rem;
+}
+
+.aboutCard {
+  display: grid;
+  gap: 0.42rem;
+  padding: 0 0 0 1rem;
+  border: 0;
+  border-left: 1px solid rgba(36, 241, 168, 0.2);
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+
+.aboutCardIndex {
+  color: var(--patient-highlight-strong);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+}
+
+.aboutCard h4,
+.aboutCard p {
+  margin: 0;
+}
+
+.aboutCard h4 {
+  font-size: 1rem;
+  color: var(--patient-foam);
+}
+
+.aboutCard p {
+  color: var(--patient-muted);
+  line-height: 1.52;
 }
 
 .agendaServiceCard {
   margin-top: 0.15rem;
   display: grid;
   gap: 0.45rem;
-  border: 1px solid rgba(29, 233, 182, 0.26);
-  border-radius: 12px;
-  padding: 0.75rem;
-  background: linear-gradient(170deg, rgba(6, 34, 40, 0.86), rgba(4, 20, 25, 0.9));
+  border: 0;
+  border-left: 2px solid rgba(36, 241, 168, 0.24);
+  border-radius: 0;
+  padding: 0 0 0 0.85rem;
+  background: none;
 }
 
 .agendaServiceTag {
   margin: 0;
   width: fit-content;
   border-radius: 999px;
-  border: 1px solid rgba(29, 233, 182, 0.34);
-  background: rgba(29, 233, 182, 0.14);
-  color: #d4fff0;
+  border: 1px solid var(--patient-border-strong);
+  background: rgba(36, 241, 168, 0.08);
+  color: var(--patient-highlight-strong);
   padding: 0.14rem 0.5rem;
   font-size: 0.66rem;
   font-weight: 700;
@@ -187,13 +819,13 @@
 .agendaServiceCard h4 {
   margin: 0;
   font-size: 1rem;
-  color: #dbfff3;
+  color: var(--patient-highlight-strong);
 }
 
 .agendaServiceDescription {
   margin: 0;
-  color: rgba(224, 242, 241, 0.9);
-  line-height: 1.4;
+  color: rgba(236, 247, 241, 0.9);
+  line-height: 1.5;
 }
 
 .agendaServiceMeta {
@@ -207,19 +839,19 @@
   align-items: center;
   justify-content: center;
   border-radius: 999px;
-  border: 1px solid rgba(224, 242, 241, 0.25);
+  border: 1px solid var(--patient-border);
   padding: 0.16rem 0.52rem;
   font-size: 0.67rem;
-  color: rgba(224, 242, 241, 0.92);
-  background: rgba(8, 28, 34, 0.62);
+  color: rgba(236, 247, 241, 0.92);
+  background: rgba(36, 241, 168, 0.05);
 }
 
 .agendaServiceCard button {
   width: fit-content;
-  border: 1px solid rgba(29, 233, 182, 0.4);
+  border: 1px solid var(--patient-border-strong);
   border-radius: 999px;
-  background: rgba(29, 233, 182, 0.2);
-  color: #dbfff3;
+  background: rgba(36, 241, 168, 0.1);
+  color: var(--patient-foam);
   padding: 0.34rem 0.85rem;
   font-size: 0.75rem;
   font-weight: 700;

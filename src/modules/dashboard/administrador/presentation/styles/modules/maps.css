@@ -1,0 +1,497 @@
+.adminHomeVisitsLayout,
+.adminLocationsLayout {
+  margin-top: 0.8rem;
+  display: grid;
+  gap: 0.85rem;
+  grid-template-columns: minmax(260px, 0.95fr) minmax(0, 1.35fr);
+}
+
+.adminHomeVisitsList,
+.adminLocationsListPane,
+.adminLocationsEditorPane {
+  border: 1px solid rgba(29, 233, 182, 0.22);
+  border-radius: 16px;
+  background: rgba(3, 46, 45, 0.35);
+  padding: 0.78rem;
+}
+
+.adminHomeVisitsList h3,
+.adminLocationsListPane h3 {
+  margin: 0;
+  color: var(--admin-foam);
+}
+
+.adminHomeVisitsList p,
+.adminLocationsListPane p,
+.adminHintText,
+.adminMapHint {
+  margin: 0.32rem 0 0;
+  color: var(--admin-text-soft);
+  font-size: 0.8rem;
+}
+
+.adminHomeVisitsCards,
+.adminLocationCards {
+  margin-top: 0.65rem;
+  display: grid;
+  gap: 0.52rem;
+  max-height: 520px;
+  overflow: auto;
+}
+
+.adminHomeVisitCard,
+.adminLocationCard {
+  border: 1px solid rgba(29, 233, 182, 0.2);
+  border-radius: 12px;
+  padding: 0.64rem;
+  background: rgba(2, 34, 35, 0.52);
+  display: grid;
+  gap: 0.3rem;
+  cursor: pointer;
+}
+
+.adminHomeVisitCardSelected,
+.adminLocationCardSelected {
+  border-color: rgba(29, 233, 182, 0.52);
+  box-shadow: 0 0 0 1px rgba(29, 233, 182, 0.3) inset;
+  background: rgba(11, 79, 74, 0.62);
+}
+
+.adminHomeVisitCardHeader,
+.adminLocationCardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.adminHomeVisitCard p,
+.adminLocationCard p,
+.adminHomeVisitCard small,
+.adminLocationCard small {
+  margin: 0;
+  color: var(--admin-foam);
+  font-size: 0.78rem;
+}
+
+.adminHomeVisitCardActions,
+.adminLocationCardActions {
+  margin-top: 0.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.adminLocationsToolbar,
+.adminLocationsToolbarActions,
+.adminLocationsSummaryRow {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.adminLocationsToolbar {
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.adminLocationsToolbarActions,
+.adminLocationsSummaryRow {
+  flex-wrap: wrap;
+}
+
+.adminLocationsSummaryRow {
+  margin: 0.6rem 0 0.55rem;
+}
+
+.adminHomeVisitsMapPane {
+  border: 1px solid rgba(29, 233, 182, 0.22);
+  border-radius: 16px;
+  background: rgba(2, 34, 35, 0.4);
+  padding: 0.78rem;
+  display: grid;
+  gap: 0.52rem;
+}
+
+.adminHomeVisitsActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.adminMapShell {
+  border: 1px solid rgba(29, 233, 182, 0.26);
+  border-radius: 12px;
+  padding: 0.45rem;
+  background: linear-gradient(165deg, rgba(2, 42, 42, 0.9), rgba(3, 25, 29, 0.95));
+}
+
+.adminMapCanvas {
+  width: 100%;
+  height: 370px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(224, 242, 241, 0.22);
+}
+
+.adminMapLoading {
+  min-height: 210px;
+  border-radius: 12px;
+  border: 1px dashed rgba(29, 233, 182, 0.3);
+  display: grid;
+  place-items: center;
+  color: var(--admin-text-soft);
+}
+
+.adminMapMarkerRoot {
+  border: 0;
+  background: transparent;
+}
+
+.adminMapMarkerOrigin,
+.adminMapMarkerDestination,
+.adminMapPolygonVertex {
+  border-radius: 999px;
+}
+
+.adminMapMarkerOrigin {
+  width: 20px;
+  height: 20px;
+  background: #1f45ff;
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 0 0 6px rgba(31, 69, 255, 0.22);
+}
+
+.adminMapMarkerDestination {
+  width: 22px;
+  height: 22px;
+  background: #ff4d4d;
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 0 0 8px rgba(255, 77, 77, 0.22);
+}
+
+.adminMapMarkerClinic {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid rgba(224, 242, 241, 0.94);
+  background: linear-gradient(160deg, #043536, #147d75);
+  color: #e0f2f1;
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.adminMapPolygonVertex {
+  width: 10px;
+  height: 10px;
+  border: 2px solid #ffffff;
+  background: #1de9b6;
+}
+
+.adminRouteLegend {
+  margin-top: 0.45rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.adminRouteLegendPrimary,
+.adminRouteLegendAlternative {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: 999px;
+  padding: 0.2rem 0.48rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.adminRouteLegendPrimary {
+  background: rgba(62, 248, 5, 0.18);
+  color: #b7ff9b;
+}
+
+.adminRouteLegendAlternative {
+  background: rgba(255, 0, 200, 0.2);
+  color: #ffd2f7;
+}
+
+.adminStatusChip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.14rem 0.48rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+.adminStatusSuccess {
+  background: rgba(62, 248, 5, 0.18);
+  color: #b7ff9b;
+}
+
+.adminStatusDanger {
+  background: rgba(255, 77, 77, 0.18);
+  color: #ffc2c2;
+}
+
+.adminStatusPending {
+  background: rgba(255, 188, 48, 0.18);
+  color: #ffe0a1;
+}
+
+.adminLocationsTabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 0.7rem;
+}
+
+.adminLocationTabButton {
+  border: 1px solid rgba(29, 233, 182, 0.28);
+  border-radius: 999px;
+  background: rgba(3, 42, 44, 0.56);
+  color: var(--admin-foam);
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 0.32rem 0.68rem;
+  cursor: pointer;
+}
+
+.adminLocationTabButtonActive {
+  border-color: rgba(29, 233, 182, 0.56);
+  background: rgba(29, 233, 182, 0.2);
+}
+
+.adminLocationFormWrap {
+  display: grid;
+  gap: 0.45rem;
+  margin-bottom: 0.6rem;
+}
+
+.adminFieldGridTwo {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.45rem;
+}
+
+.adminFieldGridThree {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.45rem;
+}
+
+.adminFieldGridFour {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.45rem;
+}
+
+.adminField {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.adminField span,
+.adminSwitchField span,
+.adminSwitchFieldInline span {
+  color: var(--admin-text-soft);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.adminField input,
+.adminField select,
+.adminField textarea {
+  border-radius: 8px;
+  border: 1px solid rgba(29, 233, 182, 0.28);
+  background: rgba(2, 29, 32, 0.72);
+  color: var(--admin-foam);
+  padding: 0.42rem 0.5rem;
+  font-size: 0.78rem;
+}
+
+.adminField textarea {
+  resize: vertical;
+}
+
+.adminSchedulePanel {
+  border: 1px solid rgba(29, 233, 182, 0.24);
+  border-radius: 10px;
+  padding: 0.52rem;
+  background: rgba(2, 25, 27, 0.55);
+  display: grid;
+  gap: 0.45rem;
+}
+
+.adminScheduleTitle {
+  margin: 0;
+  color: var(--admin-foam);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.adminScheduleRows {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.adminScheduleRow {
+  border: 1px solid rgba(29, 233, 182, 0.2);
+  border-radius: 10px;
+  padding: 0.44rem;
+  background: rgba(2, 32, 35, 0.45);
+  display: grid;
+  gap: 0.35rem;
+}
+
+.adminScheduleRowTop {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 0.48rem;
+}
+
+.adminSocialPreviewRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.adminSocialIconButton {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  border: 1px solid rgba(29, 233, 182, 0.26);
+  background: rgba(3, 42, 44, 0.64);
+  display: grid;
+  place-items: center;
+}
+
+.adminSocialIconDisabled {
+  opacity: 0.4;
+}
+
+.adminImagePreview {
+  width: 100%;
+  min-height: 140px;
+  border-radius: 10px;
+  border: 1px solid rgba(29, 233, 182, 0.24);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.adminSwitchField,
+.adminSwitchFieldInline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.adminSwitchField {
+  margin-top: 0.1rem;
+}
+
+.adminPolygonActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.adminLocationsFooterActions {
+  margin-top: 0.25rem;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.adminInlineError,
+.adminInlineSuccess {
+  margin: 0;
+  font-size: 0.78rem;
+}
+
+.adminInlineError {
+  color: #ffb4b4;
+}
+
+.adminInlineSuccess {
+  color: #a7ffd7;
+}
+
+.themeLight .adminHomeVisitsList,
+.themeLight .adminHomeVisitsMapPane,
+.themeLight .adminLocationsListPane,
+.themeLight .adminLocationsEditorPane,
+.themeLight .adminMapShell,
+.themeLight .adminHomeVisitCard,
+.themeLight .adminLocationCard {
+  background: rgba(255, 255, 255, 0.78);
+  border-color: rgba(11, 79, 74, 0.23);
+}
+
+.themeLight .adminHomeVisitCard p,
+.themeLight .adminLocationCard p,
+.themeLight .adminHomeVisitCard small,
+.themeLight .adminLocationCard small {
+  color: #134b46;
+}
+
+.themeLight .adminField input,
+.themeLight .adminField select,
+.themeLight .adminField textarea,
+.themeLight .adminLocationTabButton {
+  background: rgba(255, 255, 255, 0.9);
+  color: #0a4743;
+  border-color: rgba(11, 79, 74, 0.28);
+}
+
+.themeLight .adminLocationTabButtonActive {
+  background: rgba(29, 233, 182, 0.3);
+}
+
+.themeLight .adminMapHint,
+.themeLight .adminHintText,
+.themeLight .adminHomeVisitsList p,
+.themeLight .adminLocationsListPane p,
+.themeLight .adminScheduleTitle,
+.themeLight .adminField span,
+.themeLight .adminSwitchField span,
+.themeLight .adminSwitchFieldInline span {
+  color: #2f6862;
+}
+
+.themeLight .adminSchedulePanel,
+.themeLight .adminScheduleRow,
+.themeLight .adminSocialIconButton {
+  background: rgba(255, 255, 255, 0.86);
+  border-color: rgba(11, 79, 74, 0.25);
+}
+
+@media (max-width: 1120px) {
+  .adminHomeVisitsLayout,
+  .adminLocationsLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .adminMapCanvas {
+    height: 330px;
+  }
+}
+
+@media (max-width: 760px) {
+  .adminFieldGridTwo,
+  .adminFieldGridThree,
+  .adminFieldGridFour {
+    grid-template-columns: 1fr;
+  }
+
+  .adminMapCanvas {
+    height: 280px;
+  }
+}

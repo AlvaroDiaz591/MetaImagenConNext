@@ -1,10 +1,19 @@
 :root {
-  --patient-bg-1: #03060d;
-  --patient-bg-2: #041417;
-  --patient-bg-3: #0b4f4a;
-  --patient-foam: #e0f2f1;
-  --patient-highlight: #1de9b6;
-  --patient-lagoon: #147d75;
-  --patient-deep: #043536;
+  --patient-bg-1: #02140d;
+  --patient-bg-2: #03251a;
+  --patient-bg-3: #043626;
+  --patient-bg-4: #0a5a40;
+  --patient-foam: #ecfff8;
+  --patient-muted: rgba(223, 255, 245, 0.78);
+  --patient-highlight: #24f1a8;
+  --patient-highlight-strong: #92ffd7;
+  --patient-lagoon: #10cf85;
+  --patient-deep: #043523;
+  --patient-panel: rgba(4, 28, 19, 0.5);
+  --patient-panel-strong: rgba(5, 36, 25, 0.72);
+  --patient-card: rgba(36, 241, 168, 0.07);
+  --patient-border: rgba(36, 241, 168, 0.18);
+  --patient-border-strong: rgba(146, 255, 215, 0.34);
+  --patient-shadow: rgba(0, 15, 10, 0.32);
   --patient-line: rgba(255, 255, 255, 0.76);
 }

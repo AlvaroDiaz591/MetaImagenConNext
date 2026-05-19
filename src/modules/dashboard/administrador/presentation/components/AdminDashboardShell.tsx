@@ -1,5 +1,6 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { GetAdminDashboardSummaryUseCase } from "../../application/usecases/GetAdminDashboardSummaryUseCase";
@@ -15,11 +16,23 @@ import AdminModuleSidebar from "./AdminModuleSidebar";
 import AdminPortalToolbar from "./AdminPortalToolbar";
 import AdminSectionDataTable from "./AdminSectionDataTable";
 import AdminTreatmentsServicesSection from "./treatments/AdminTreatmentsServicesSection";
+import AdminHomeVisitsSection from "./home-visits/AdminHomeVisitsSection";
+import AdminLocationsSection from "./locations/AdminLocationsSection";
 import AdminRecordDetailDrawer from "./AdminRecordDetailDrawer";
 import AdminEsp32ControlPanel from "./AdminEsp32ControlPanel";
 import AdminEsp32PointerOverlay from "./AdminEsp32PointerOverlay";
+import AdminAgendaSection from "../modules/agenda/components/AdminAgendaSection";
+import AdminNotificationsSection from "../modules/notificaciones/components/AdminNotificationsSection";
 import { useEsp32BlePointerControl } from "../hooks/useEsp32BlePointerControl";
 import styles from "../styles/AdminDashboard.module.css";
+
+const AdminKinectPostureSection = dynamic(
+  () => import("../modules/kinect_postura/components/AdminKinectPostureSection"),
+  {
+    ssr: false,
+    loading: () => <div className={styles.statusScreen}>Cargando modulo Kinect...</div>,
+  },
+);
 
 const AdminDashboardShell = () => {
   const router = useRouter();
@@ -167,7 +180,12 @@ const AdminDashboardShell = () => {
     [modulosPortal, seccionActiva],
   );
   const isEsp32Section = seccionActiva === "esp32_control";
+  const isKinectSection = seccionActiva === "kinect_postura";
+  const isAgendaSection = seccionActiva === "agenda";
+  const isNotificationsSection = seccionActiva === "notificaciones";
   const isTreatmentsSection = seccionActiva === "tratamientos_servicios";
+  const isHomeVisitsSection = seccionActiva === "visitas_domicilio";
+  const isLocationsSection = seccionActiva === "ubicaciones";
 
   const goToNextPage = useCallback(() => {
     if (canGoNextPage) {
@@ -331,6 +349,23 @@ const AdminDashboardShell = () => {
 
   const closeDrawer = useCallback(() => setDrawerOpen(false), []);
 
+  const syncNotificationSummary = useCallback((nextSummary: { total: number; noLeidas: number }) => {
+    setSummary((current) => {
+      if (!current) {
+        return current;
+      }
+
+      return {
+        ...current,
+        notificaciones: {
+          ...current.notificaciones,
+          total: nextSummary.total,
+          noLeidas: nextSummary.noLeidas,
+        },
+      };
+    });
+  }, []);
+
   if (initialLoading) {
     return <main className={styles.statusScreen}>Cargando dashboard...</main>;
   }
@@ -413,6 +448,17 @@ const AdminDashboardShell = () => {
 
           {isEsp32Section ? (
             <AdminEsp32ControlPanel controller={esp32Controller} />
+          ) : isKinectSection ? (
+            <AdminKinectPostureSection active={isKinectSection} themeMode={themeMode} />
+          ) : isAgendaSection ? (
+            <AdminAgendaSection active={isAgendaSection} token={getSessionToken()} themeMode={themeMode} />
+          ) : isNotificationsSection ? (
+            <AdminNotificationsSection
+              active={isNotificationsSection}
+              token={getSessionToken()}
+              themeMode={themeMode}
+              onSummaryChange={syncNotificationSummary}
+            />
           ) : (
             <>
               <AdminPortalToolbar
@@ -424,15 +470,25 @@ const AdminDashboardShell = () => {
                 unreadNotifications={summary.notificaciones.noLeidas}
                 onMarkAllNotificationsRead={onMarkAllNotificationsRead}
                 markingAllNotifications={markingAllNotifications}
-                isNotificationsSection={portal.seccionActiva === "notificaciones"}
+                isNotificationsSection={isNotificationsSection}
               />
 
               {isTreatmentsSection ? (
                 <AdminTreatmentsServicesSection
+                  active={isTreatmentsSection}
+                  token={getSessionToken()}
+                  themeMode={themeMode}
+                />
+              ) : isHomeVisitsSection ? (
+                <AdminHomeVisitsSection
                   filas={portal.filas}
                   onViewRow={onSelectRecord}
-                  onToggleActiveRow={onToggleRecordStatus}
-                  actionLoadingId={recordActionLoadingId}
+                />
+              ) : isLocationsSection ? (
+                <AdminLocationsSection
+                  active={isLocationsSection}
+                  token={getSessionToken()}
+                  themeMode={themeMode}
                 />
               ) : (
                 <AdminSectionDataTable

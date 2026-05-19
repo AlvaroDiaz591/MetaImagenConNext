@@ -1,0 +1,746 @@
+.sectionWrap {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.sectionWrapDark {
+  color: #e0f2f1;
+}
+
+.sectionWrapLight {
+  color: #043536;
+}
+
+.statusScreen {
+  display: grid;
+  min-height: 24rem;
+  place-items: center;
+  border-radius: 1.75rem;
+  background:
+    radial-gradient(circle at top left, rgba(29, 233, 182, 0.18), transparent 34%),
+    linear-gradient(160deg, rgba(11, 79, 74, 0.92), rgba(4, 53, 54, 0.92));
+  color: #f5fffc;
+  font-size: 1.05rem;
+}
+
+.messageSuccess,
+.messageError {
+  border-radius: 1rem;
+  padding: 0.95rem 1rem;
+  font-weight: 600;
+}
+
+.messageSuccess {
+  background: rgba(29, 233, 182, 0.14);
+  border: 1px solid rgba(29, 233, 182, 0.3);
+  color: #0b4f4a;
+}
+
+.messageError {
+  background: rgba(220, 74, 91, 0.12);
+  border: 1px solid rgba(220, 74, 91, 0.28);
+  color: #7a1f2e;
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  border-radius: 2rem;
+  min-height: 23rem;
+  background: linear-gradient(145deg, #0b4f4a, #043536);
+  box-shadow: 0 30px 80px rgba(4, 53, 54, 0.22);
+}
+
+.heroBackdrop {
+  position: absolute;
+  inset: 0;
+}
+
+.heroBackdrop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(120deg, rgba(4, 53, 54, 0.9), rgba(11, 79, 74, 0.74)),
+    radial-gradient(circle at 80% 20%, rgba(29, 233, 182, 0.32), transparent 25%);
+}
+
+.heroImage {
+  object-fit: cover;
+  opacity: 0.34;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 1.5rem;
+  padding: 1.75rem;
+  color: #f4fffe;
+}
+
+.brandColumn {
+  display: grid;
+  gap: 1rem;
+  max-width: 52rem;
+}
+
+.brandBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: fit-content;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(14px);
+  font-weight: 700;
+}
+
+.eyebrow {
+  margin: 0;
+  color: #9effe0;
+  font-size: 0.82rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.heroTitle {
+  margin: 0.45rem 0 0;
+  font-size: clamp(1.9rem, 3vw, 3rem);
+  line-height: 1.05;
+}
+
+.heroCopy {
+  margin: 0.9rem 0 0;
+  max-width: 44rem;
+  color: rgba(244, 255, 254, 0.84);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.metricGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.metricCard {
+  display: grid;
+  gap: 0.25rem;
+  padding: 1.1rem 1.15rem;
+  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(16px);
+}
+
+.metricCard strong {
+  font-size: clamp(1.65rem, 2vw, 2.2rem);
+}
+
+.metricCard span {
+  color: rgba(244, 255, 254, 0.8);
+}
+
+.tabRail {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.tabButton,
+.tabButtonActive {
+  display: grid;
+  gap: 0.4rem;
+  text-align: left;
+  padding: 1rem 1rem 1.05rem;
+  border-radius: 1.2rem;
+  border: 1px solid transparent;
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.tabButton {
+  background: rgba(255, 255, 255, 0.08);
+  color: #f4fffe;
+}
+
+.tabButtonActive {
+  background: linear-gradient(145deg, rgba(29, 233, 182, 0.23), rgba(224, 242, 241, 0.16));
+  border-color: rgba(29, 233, 182, 0.45);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.tabButton small,
+.tabButtonActive small {
+  color: rgba(244, 255, 254, 0.78);
+  line-height: 1.45;
+}
+
+.schedulerGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: 1.25rem;
+}
+
+.panelCard {
+  display: grid;
+  gap: 1rem;
+  padding: 1.35rem;
+  border-radius: 1.65rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 253, 252, 0.98));
+  border: 1px solid rgba(11, 79, 74, 0.08);
+  box-shadow: 0 18px 42px rgba(11, 79, 74, 0.1);
+}
+
+.panelHead {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.panelHead h4 {
+  margin: 0;
+  color: #043536;
+  font-size: 1.2rem;
+}
+
+.panelHead p {
+  margin: 0.35rem 0 0;
+  color: #527572;
+  line-height: 1.55;
+}
+
+.liveTag,
+.sectionKicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  width: fit-content;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(29, 233, 182, 0.14);
+  color: #0b4f4a;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.fieldRow,
+.toolbarRow,
+.customRangeRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+}
+
+.fieldLabel,
+.filterField {
+  display: grid;
+  gap: 0.45rem;
+  color: #043536;
+  font-weight: 700;
+}
+
+.fieldLabel {
+  width: 100%;
+}
+
+.filterField {
+  min-width: 10rem;
+}
+
+.input,
+.inputCompact,
+.textarea {
+  width: 100%;
+  border: 1px solid rgba(11, 79, 74, 0.14);
+  border-radius: 0.95rem;
+  background: #f8fcfb;
+  color: #043536;
+}
+
+.input,
+.inputCompact {
+  min-height: 3rem;
+  padding: 0.75rem 0.95rem;
+}
+
+.textarea {
+  min-height: 8rem;
+  padding: 0.9rem 0.95rem;
+  resize: vertical;
+}
+
+.chipWrap,
+.assignmentRow,
+.statusActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.choiceChip,
+.choiceChipActive,
+.assignmentChip,
+.secondaryButton,
+.secondaryButtonActive {
+  border-radius: 999px;
+  padding: 0.6rem 0.95rem;
+}
+
+.choiceChip,
+.secondaryButton {
+  background: #eef8f6;
+  color: #0b4f4a;
+  border: 1px solid rgba(11, 79, 74, 0.12);
+}
+
+.choiceChipActive,
+.secondaryButtonActive {
+  background: #0b4f4a;
+  color: #f8fffe;
+  border: 1px solid #0b4f4a;
+}
+
+.patientResults,
+.appointmentList {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.appointmentList {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.patientOption,
+.patientOptionActive {
+  display: grid;
+  gap: 0.2rem;
+  text-align: left;
+  padding: 0.85rem 0.95rem;
+  border-radius: 1rem;
+}
+
+.patientOption {
+  background: #f6fbfa;
+  border: 1px solid rgba(11, 79, 74, 0.1);
+}
+
+.patientOptionActive {
+  background: linear-gradient(145deg, rgba(29, 233, 182, 0.18), rgba(11, 79, 74, 0.08));
+  border: 1px solid rgba(11, 79, 74, 0.26);
+}
+
+.patientOption span,
+.patientOption small,
+.patientOption strong,
+.patientOptionActive span,
+.patientOptionActive small,
+.patientOptionActive strong,
+.emptyInline,
+.notesLine,
+.timelineItem span,
+.timelineItem small,
+.appointmentBody span,
+.appointmentBody small {
+  color: #5a7673;
+}
+
+.sectionWrapDark .panelCard {
+  background: linear-gradient(180deg, rgba(6, 36, 38, 0.94), rgba(3, 24, 26, 0.98));
+  border-color: rgba(29, 233, 182, 0.14);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.24);
+}
+
+.sectionWrapDark .panelHead h4,
+.sectionWrapDark .fieldLabel,
+.sectionWrapDark .filterField,
+.sectionWrapDark .staffToggle strong,
+.sectionWrapDark .appointmentMeta strong,
+.sectionWrapDark .patientOption strong,
+.sectionWrapDark .patientOptionActive strong,
+.sectionWrapDark .emptyInline,
+.sectionWrapDark .notesLine {
+  color: #f1fffb;
+}
+
+.sectionWrapDark .panelHead p,
+.sectionWrapDark .patientOption span,
+.sectionWrapDark .patientOption small,
+.sectionWrapDark .patientOptionActive span,
+.sectionWrapDark .patientOptionActive small,
+.sectionWrapDark .staffToggle small,
+.sectionWrapDark .appointmentMeta small,
+.sectionWrapDark .appointmentBody span,
+.sectionWrapDark .appointmentBody small {
+  color: rgba(224, 242, 241, 0.74);
+}
+
+.sectionWrapDark .input,
+.sectionWrapDark .inputCompact,
+.sectionWrapDark .textarea {
+  background: rgba(226, 242, 240, 0.08);
+  border-color: rgba(143, 255, 232, 0.18);
+  color: #f4fffd;
+}
+
+.sectionWrapDark .input::placeholder,
+.sectionWrapDark .inputCompact::placeholder,
+.sectionWrapDark .textarea::placeholder {
+  color: rgba(224, 242, 241, 0.5);
+}
+
+.sectionWrapDark .patientOption {
+  background: rgba(223, 241, 239, 0.05);
+  border-color: rgba(143, 255, 232, 0.12);
+}
+
+.sectionWrapDark .patientOptionActive {
+  background: linear-gradient(145deg, rgba(29, 233, 182, 0.24), rgba(11, 79, 74, 0.26));
+  border-color: rgba(143, 255, 232, 0.24);
+}
+
+.sectionWrapDark .staffCard {
+  background: rgba(223, 241, 239, 0.05);
+  border-color: rgba(143, 255, 232, 0.12);
+}
+
+.sectionWrapDark .staffCardActive {
+  background: rgba(29, 233, 182, 0.16);
+  border-color: rgba(143, 255, 232, 0.24);
+}
+
+.sectionWrapDark .choiceChip,
+.sectionWrapDark .secondaryButton {
+  background: rgba(223, 241, 239, 0.08);
+  color: #dcfff3;
+  border-color: rgba(143, 255, 232, 0.16);
+}
+
+.sectionWrapDark .choiceChipActive,
+.sectionWrapDark .secondaryButtonActive,
+.sectionWrapDark .primaryButton {
+  color: #f8fffe;
+}
+
+.sectionWrapDark .appointmentCard {
+  background: rgba(223, 241, 239, 0.05);
+  border-color: rgba(143, 255, 232, 0.12);
+}
+
+.sectionWrapDark .statusPill {
+  border: 1px solid transparent;
+}
+
+.sectionWrapDark .statusPill[data-status="pendiente"] {
+  background: rgba(255, 196, 61, 0.18);
+  border-color: rgba(255, 214, 102, 0.22);
+  color: #ffd978;
+}
+
+.sectionWrapDark .statusPill[data-status="confirmada"] {
+  background: rgba(29, 233, 182, 0.18);
+  border-color: rgba(124, 255, 223, 0.24);
+  color: #7effda;
+}
+
+.sectionWrapDark .statusPill[data-status="cancelada"] {
+  background: rgba(220, 74, 91, 0.2);
+  border-color: rgba(255, 145, 159, 0.22);
+  color: #ff9eab;
+}
+
+.sectionWrapDark .secondaryButton[data-status="pendiente"] {
+  background: rgba(255, 196, 61, 0.12);
+  border-color: rgba(255, 214, 102, 0.18);
+  color: #ffe29a;
+}
+
+.sectionWrapDark .secondaryButton[data-status="confirmada"] {
+  background: rgba(29, 233, 182, 0.12);
+  border-color: rgba(124, 255, 223, 0.18);
+  color: #97ffe3;
+}
+
+.sectionWrapDark .secondaryButton[data-status="cancelada"] {
+  background: rgba(220, 74, 91, 0.12);
+  border-color: rgba(255, 145, 159, 0.18);
+  color: #ffb4be;
+}
+
+.sectionWrapDark .secondaryButtonActive[data-status="pendiente"] {
+  background: linear-gradient(145deg, #8f6500, #e0a400);
+  border-color: #f4cc6a;
+  color: #221700;
+}
+
+.sectionWrapDark .secondaryButtonActive[data-status="confirmada"] {
+  background: linear-gradient(145deg, #0f7768, #1de9b6);
+  border-color: #7effda;
+  color: #041d18;
+}
+
+.sectionWrapDark .secondaryButtonActive[data-status="cancelada"] {
+  background: linear-gradient(145deg, #7f2633, #dc4a5b);
+  border-color: #ff98a5;
+  color: #fff7f8;
+}
+
+.sectionWrapDark .assignmentChip {
+  background: rgba(223, 241, 239, 0.08);
+  border-color: rgba(143, 255, 232, 0.16);
+  color: #dcfff3;
+}
+
+.patientDetailCard {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 1.25rem;
+  background: linear-gradient(135deg, #043536, #0b4f4a);
+  color: #f6fffe;
+}
+
+.patientDetailCard h5 {
+  margin: 0.4rem 0 0;
+  font-size: 1.1rem;
+}
+
+.patientDetailCard p {
+  margin: 0.35rem 0 0;
+  color: rgba(246, 255, 254, 0.78);
+}
+
+.miniTimeline {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.timelineItem {
+  display: grid;
+  gap: 0.15rem;
+  padding: 0.8rem 0.85rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.timelineItem span,
+.timelineItem small {
+  color: rgba(246, 255, 254, 0.72);
+}
+
+.staffGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.staffCard,
+.staffCardActive {
+  display: grid;
+  gap: 0.65rem;
+  padding: 0.85rem;
+  border-radius: 1rem;
+}
+
+.staffCard {
+  background: #f7fbfb;
+  border: 1px solid rgba(11, 79, 74, 0.1);
+}
+
+.staffCardActive {
+  background: rgba(29, 233, 182, 0.14);
+  border: 1px solid rgba(11, 79, 74, 0.26);
+}
+
+.staffToggle {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  cursor: pointer;
+}
+
+.staffToggle strong,
+.appointmentMeta strong {
+  color: #043536;
+}
+
+.staffToggle small,
+.appointmentMeta small {
+  color: #5a7673;
+}
+
+.primaryButton {
+  min-height: 3.25rem;
+  border-radius: 1rem;
+  background: linear-gradient(145deg, #0b4f4a, #147d75);
+  color: #f8fffe;
+  font-weight: 700;
+}
+
+.appointmentCard {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: 1.2rem;
+  background: #fbfefd;
+  border: 1px solid rgba(11, 79, 74, 0.1);
+  align-content: start;
+}
+
+.appointmentMeta,
+.appointmentBody {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.appointmentMeta {
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+}
+
+.appointmentIdentity {
+  display: grid;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.appointmentIdentity strong {
+  overflow-wrap: anywhere;
+}
+
+.appointmentBody {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.appointmentInfoBlock {
+  display: grid;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.appointmentInfoBlock span,
+.appointmentInfoBlock small {
+  overflow-wrap: anywhere;
+}
+
+.agendaPagination,
+.paginationActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.agendaPagination {
+  padding-top: 0.25rem;
+}
+
+.paginationInfo {
+  color: #5a7673;
+  font-weight: 600;
+}
+
+.statusPill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 7rem;
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.statusPill[data-status="pendiente"] {
+  background: rgba(255, 204, 64, 0.24);
+  border-color: rgba(224, 164, 0, 0.22);
+  color: #8b6400;
+}
+
+.statusPill[data-status="confirmada"] {
+  background: rgba(29, 233, 182, 0.2);
+  border-color: rgba(11, 79, 74, 0.18);
+  color: #0f6d63;
+}
+
+.statusPill[data-status="cancelada"] {
+  background: rgba(220, 74, 91, 0.18);
+  border-color: rgba(171, 39, 62, 0.18);
+  color: #9d2b3d;
+}
+
+.secondaryButton[data-status="pendiente"] {
+  background: rgba(255, 204, 64, 0.14);
+  border-color: rgba(224, 164, 0, 0.18);
+  color: #8b6400;
+}
+
+.secondaryButton[data-status="confirmada"] {
+  background: rgba(29, 233, 182, 0.14);
+  border-color: rgba(11, 79, 74, 0.16);
+  color: #0f6d63;
+}
+
+.secondaryButton[data-status="cancelada"] {
+  background: rgba(220, 74, 91, 0.12);
+  border-color: rgba(171, 39, 62, 0.16);
+  color: #9d2b3d;
+}
+
+.secondaryButtonActive[data-status="pendiente"] {
+  background: linear-gradient(145deg, #c78b00, #f0c44e);
+  border-color: #d9aa2b;
+  color: #2f2100;
+}
+
+.secondaryButtonActive[data-status="confirmada"] {
+  background: linear-gradient(145deg, #0b7b71, #1de9b6);
+  border-color: #149985;
+  color: #f5fffd;
+}
+
+.secondaryButtonActive[data-status="cancelada"] {
+  background: linear-gradient(145deg, #b43c4d, #df6676);
+  border-color: #c95262;
+  color: #fffafb;
+}
+
+.assignmentChip {
+  background: rgba(11, 79, 74, 0.08);
+  color: #0b4f4a;
+  border: 1px solid rgba(11, 79, 74, 0.12);
+}
+
+@media (max-width: 1120px) {
+  .schedulerGrid,
+  .metricGrid,
+  .tabRail {
+    grid-template-columns: 1fr;
+  }
+
+  .appointmentList,
+  .appointmentBody {
+    grid-template-columns: 1fr;
+  }
+
+  .staffGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .heroContent,
+  .panelCard {
+    padding: 1rem;
+  }
+
+  .hero {
+    min-height: 20rem;
+  }
+}

@@ -3,6 +3,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import type { AuthMode } from "@/src/shared/types/AuthMode";
+import AudioVolumeSlider from "./AudioVolumeSlider";
 import LoginPanel from "@/src/modules/login/presentation/components/LoginPanel";
 import NeonNodeBackground from "@/src/modules/login/presentation/components/NeonNodeBackground";
 import RegisterPanel from "@/src/modules/registro/presentation/components/RegisterPanel";
@@ -19,7 +20,6 @@ const AuthFlipCard = ({ initialMode }: AuthFlipCardProps) => {
   const [mode, setMode] = useState<AuthMode>(initialMode);
   const [isFlipping, setIsFlipping] = useState(false);
   const [audioMuted, setAudioMuted] = useState(false);
-  const [audioVolume, setAudioVolume] = useState(DEFAULT_AUDIO_VOLUME);
   const [audioNeedsGesture, setAudioNeedsGesture] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -27,14 +27,14 @@ const AuthFlipCard = ({ initialMode }: AuthFlipCardProps) => {
     setMode(initialMode);
   }, [initialMode]);
 
-  const attemptAudioPlayback = useCallback(() => {
+  const attemptAudioPlayback = useCallback((nextMuted = audioMuted) => {
     const audio = audioRef.current;
     if (!audio) {
       return;
     }
 
-    audio.muted = audioMuted;
-    audio.volume = audioMuted ? 0 : audioVolume;
+    audio.muted = nextMuted;
+    audio.volume = nextMuted ? 0 : DEFAULT_AUDIO_VOLUME;
 
     const playPromise = audio.play();
     if (playPromise && typeof playPromise.catch === "function") {
@@ -42,7 +42,7 @@ const AuthFlipCard = ({ initialMode }: AuthFlipCardProps) => {
         .then(() => setAudioNeedsGesture(false))
         .catch(() => setAudioNeedsGesture(true));
     }
-  }, [audioMuted, audioVolume]);
+  }, [audioMuted]);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -53,10 +53,10 @@ const AuthFlipCard = ({ initialMode }: AuthFlipCardProps) => {
     audio.loop = true;
     audio.preload = "auto";
     audio.muted = audioMuted;
-    audio.volume = audioMuted ? 0 : audioVolume;
+    audio.volume = audioMuted ? 0 : DEFAULT_AUDIO_VOLUME;
 
     attemptAudioPlayback();
-  }, [attemptAudioPlayback, audioMuted, audioVolume, mode]);
+  }, [attemptAudioPlayback, audioMuted, mode]);
 
   useEffect(() => {
     if (!audioNeedsGesture) {
@@ -79,25 +79,15 @@ const AuthFlipCard = ({ initialMode }: AuthFlipCardProps) => {
   const toggleAudioMute = () => {
     setAudioMuted((current) => {
       const nextMuted = !current;
+
       if (!nextMuted) {
         window.setTimeout(() => {
-          attemptAudioPlayback();
+          attemptAudioPlayback(false);
         }, 0);
       }
+
       return nextMuted;
     });
-  };
-
-  const handleVolumeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const nextVolume = Number(event.target.value) / 100;
-    setAudioVolume(nextVolume);
-    setAudioMuted(nextVolume === 0);
-
-    if (nextVolume > 0) {
-      window.setTimeout(() => {
-        attemptAudioPlayback();
-      }, 0);
-    }
   };
 
   const toggleMode = () => {
@@ -131,29 +121,10 @@ const AuthFlipCard = ({ initialMode }: AuthFlipCardProps) => {
       ) : null}
 
       <aside className={styles.audioDock} aria-label="Control de audio de bienvenida">
-        <div className={styles.audioDockHeader}>
-          <span className={styles.audioDockTitle}>Audio de bienvenida</span>
-          <button type="button" className={styles.audioDockButton} onClick={toggleAudioMute}>
-            {audioMuted ? "Activar" : "Silenciar"}
-          </button>
-        </div>
-
-        <label className={styles.audioVolumeGroup}>
-          <span className={styles.audioVolumeLabel}>Volumen</span>
-          <div className={styles.audioVolumeRow}>
-            <input
-              type="range"
-              min="0"
-              max="100"
-              step="1"
-              value={Math.round(audioVolume * 100)}
-              onChange={handleVolumeChange}
-              className={styles.audioVolumeSlider}
-              aria-label="Nivel de volumen"
-            />
-            <span className={styles.audioVolumeValue}>{Math.round(audioVolume * 100)}%</span>
-          </div>
-        </label>
+        <AudioVolumeSlider
+          muted={audioMuted}
+          onToggleMute={toggleAudioMute}
+        />
 
         {audioNeedsGesture ? (
           <p className={styles.audioHint}>Si no suena, toca cualquier control para activarlo.</p>

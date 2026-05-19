@@ -15,5 +15,5 @@ export const agendaModuleConfig: AdminModuleSchema = {
     creado_en: "Creado",
     actualizado_en: "Actualizado",
   },
-  acciones: ["ver"],
+  acciones: ["ver", "editar"],
 };

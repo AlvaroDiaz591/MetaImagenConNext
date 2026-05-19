@@ -3,14 +3,23 @@
   padding: 1.25rem;
   font-family: "Sora", "Manrope", "Trebuchet MS", sans-serif;
   background:
-    radial-gradient(circle at 12% 8%, rgba(29, 233, 182, 0.2), transparent 34%),
-    radial-gradient(circle at 82% 12%, rgba(20, 125, 117, 0.28), transparent 32%),
-    linear-gradient(165deg, var(--admin-marine-green) 0%, var(--admin-deep-sea-blue) 45%, #022828 100%);
+    radial-gradient(circle at 12% 8%, rgba(36, 241, 168, 0.2), transparent 34%),
+    radial-gradient(circle at 82% 12%, rgba(16, 207, 133, 0.22), transparent 32%),
+    linear-gradient(165deg, var(--admin-marine-green) 0%, var(--admin-deep-sea-blue) 45%, #032117 100%);
   color: var(--admin-text-strong);
 }
 
 .themeDark {
   color-scheme: dark;
+  --admin-marine-green: #02140d;
+  --admin-deep-sea-blue: #03251a;
+  --admin-lagoon: #10cf85;
+  --admin-foam: #ecfff8;
+  --admin-highlight: #24f1a8;
+  --admin-surface-glass: rgba(36, 241, 168, 0.08);
+  --admin-border-glass: rgba(36, 241, 168, 0.22);
+  --admin-text-strong: #ecfff8;
+  --admin-text-soft: #b4ffe4;
 }
 
 .statusScreen {

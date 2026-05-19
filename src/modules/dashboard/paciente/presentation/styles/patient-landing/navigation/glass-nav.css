@@ -1,0 +1,88 @@
+.mainNav {
+  --bg: rgba(245, 251, 247, 0.08);
+  --text: rgba(237, 247, 241, 0.82);
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  min-width: min(100%, 620px);
+  padding: 0.34rem;
+  border-radius: 1.3rem;
+  background: var(--bg);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    inset 1px 1px 4px rgba(255, 255, 255, 0.12),
+    inset -1px -1px 6px rgba(0, 0, 0, 0.18),
+    0 18px 28px rgba(0, 0, 0, 0.14);
+  overflow: hidden;
+}
+
+.glassNavButton {
+  flex: 1 1 0;
+  min-width: 132px;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  padding: 0.92rem 1.45rem;
+  font-size: 0.86rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+  transition: color 0.3s ease-in-out, transform 0.18s ease, opacity 0.18s ease;
+}
+
+.glassNavButton:hover {
+  color: #ffffff;
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+.glassNavButtonActive {
+  color: #ffffff;
+}
+
+.glassGlider {
+  position: absolute;
+  top: 0.32rem;
+  bottom: 0.32rem;
+  left: 0.32rem;
+  width: calc((100% - 0.64rem) / var(--glass-glider-count));
+  border-radius: 1rem;
+  z-index: 1;
+  transform: translateX(calc(var(--glass-glider-index) * 100%));
+  transition:
+    transform 0.5s cubic-bezier(0.37, 1.95, 0.66, 0.56),
+    background 0.4s ease-in-out,
+    box-shadow 0.4s ease-in-out;
+}
+
+.mainNav[data-active-index="0"] .glassGlider {
+  background: linear-gradient(135deg, rgba(193, 232, 210, 0.35), rgba(118, 177, 146, 0.92));
+  box-shadow:
+    0 0 18px rgba(193, 232, 210, 0.2),
+    0 0 10px rgba(255, 255, 255, 0.18) inset;
+}
+
+.mainNav[data-active-index="1"] .glassGlider {
+  background: linear-gradient(135deg, rgba(164, 214, 189, 0.35), rgba(84, 140, 116, 0.92));
+  box-shadow:
+    0 0 18px rgba(164, 214, 189, 0.22),
+    0 0 10px rgba(239, 248, 243, 0.18) inset;
+}
+
+.mainNav[data-active-index="2"] .glassGlider {
+  background: linear-gradient(135deg, rgba(146, 199, 182, 0.34), rgba(69, 124, 111, 0.9));
+  box-shadow:
+    0 0 18px rgba(146, 199, 182, 0.22),
+    0 0 10px rgba(238, 247, 242, 0.18) inset;
+}
+
+.mainNav[data-active-index="3"] .glassGlider {
+  background: linear-gradient(135deg, rgba(211, 233, 220, 0.32), rgba(97, 147, 125, 0.9));
+  box-shadow:
+    0 0 18px rgba(211, 233, 220, 0.2),
+    0 0 10px rgba(255, 255, 255, 0.18) inset;
+}

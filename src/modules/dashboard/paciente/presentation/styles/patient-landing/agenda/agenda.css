@@ -1,0 +1,463 @@
+.agendaSection {
+  margin-top: 2rem;
+  border: 0;
+  border-top: 1px solid rgba(36, 241, 168, 0.16);
+  border-radius: 0;
+  padding: 1.5rem 0 0;
+  background: none;
+  box-shadow: none;
+}
+
+.agendaHeading {
+  display: grid;
+  gap: 0.35rem;
+  margin-bottom: 1.2rem;
+}
+
+.agendaHeading h3,
+.agendaHeading p {
+  margin: 0;
+}
+
+.agendaHeading h3 {
+  font-size: 1.16rem;
+  color: var(--patient-highlight-strong);
+}
+
+.agendaHeading p {
+  font-size: 0.82rem;
+  color: var(--patient-muted);
+  line-height: 1.4;
+}
+
+.agendaLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 340px);
+  gap: 1.4rem;
+}
+
+.agendaMain {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.agendaAside {
+  border: 0;
+  border-left: 1px solid rgba(36, 241, 168, 0.18);
+  border-radius: 0;
+  padding: 0 0 0 1rem;
+  background: none;
+  align-self: start;
+}
+
+.agendaAside h4 {
+  margin: 0 0 0.55rem;
+  font-size: 0.92rem;
+}
+
+.agendaAppointmentsList {
+  display: grid;
+  gap: 0.48rem;
+}
+
+.agendaAppointmentCard {
+  display: grid;
+  gap: 0.28rem;
+  padding: 0.65rem 0;
+  border: 0;
+  border-bottom: 1px solid rgba(36, 241, 168, 0.1);
+  border-radius: 0;
+  background: none;
+}
+
+.agendaAppointmentCard strong {
+  font-size: 0.82rem;
+  color: var(--patient-highlight-strong);
+}
+
+.agendaAppointmentCard p,
+.agendaAppointmentCard small {
+  margin: 0;
+  color: rgba(236, 247, 241, 0.82);
+}
+
+.agendaModeGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem;
+}
+
+.agendaModeButton {
+  border: 1px solid var(--patient-border);
+  border-radius: 999px;
+  padding: 0.62rem;
+  display: grid;
+  gap: 0.22rem;
+  text-align: left;
+  background: rgba(36, 241, 168, 0.06);
+  color: rgba(236, 247, 241, 0.86);
+  cursor: pointer;
+  transition: transform 0.18s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.agendaModeButton span {
+  font-size: 0.72rem;
+}
+
+.agendaModeButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.agendaModeButtonActive {
+  border-color: var(--patient-border-strong);
+  box-shadow: 0 0 0 1px rgba(146, 255, 215, 0.12) inset;
+  background: rgba(36, 241, 168, 0.12);
+  color: var(--patient-foam);
+}
+
+.agendaDateTimeGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.6rem;
+}
+
+.agendaField {
+  display: grid;
+  gap: 0.24rem;
+}
+
+.agendaField span {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: rgba(236, 247, 241, 0.84);
+  letter-spacing: 0.02em;
+}
+
+.agendaField input,
+.agendaField select,
+.agendaField textarea {
+  border-radius: 14px;
+  border: 1px solid var(--patient-border);
+  background: rgba(6, 35, 24, 0.34);
+  color: var(--patient-foam);
+  font-size: 0.82rem;
+  padding: 0.58rem 0.62rem;
+  width: 100%;
+}
+
+.agendaField textarea {
+  resize: vertical;
+}
+
+.agendaField input:focus,
+.agendaField select:focus,
+.agendaField textarea:focus {
+  outline: 2px solid rgba(146, 255, 215, 0.2);
+  border-color: var(--patient-border-strong);
+  box-shadow: 0 0 0 4px rgba(36, 241, 168, 0.14);
+}
+
+.agendaHintText,
+.agendaErrorText,
+.agendaSuccessText {
+  margin: 0;
+  font-size: 0.75rem;
+}
+
+.agendaHintText {
+  color: rgba(224, 242, 241, 0.78);
+}
+
+.agendaErrorText {
+  color: #ff9f9f;
+}
+
+.agendaSuccessText {
+  color: #8fffd8;
+}
+
+.agendaServiceBlock,
+.agendaClinicBlock,
+.agendaHomeBlock {
+  border: 0;
+  border-top: 1px solid rgba(36, 241, 168, 0.12);
+  border-radius: 0;
+  padding: 0.95rem 0 0;
+  background: none;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.agendaServiceHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+}
+
+.agendaServiceHeader h4 {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.agendaServiceHeader button,
+.agendaHomeActionRow button,
+.agendaActionsRow button,
+.agendaRoutePanel > button {
+  border: 1px solid var(--patient-border-strong);
+  border-radius: 999px;
+  padding: 0.34rem 0.72rem;
+  background: rgba(36, 241, 168, 0.1);
+  color: var(--patient-foam);
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.agendaChipWrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.38rem;
+}
+
+.agendaChipButton {
+  border: 1px solid var(--patient-border);
+  border-radius: 999px;
+  padding: 0.28rem 0.58rem;
+  font-size: 0.73rem;
+  background: rgba(36, 241, 168, 0.05);
+  color: rgba(236, 247, 241, 0.88);
+  cursor: pointer;
+}
+
+.agendaChipButtonActive {
+  border-color: var(--patient-border-strong);
+  background: rgba(36, 241, 168, 0.12);
+  color: var(--patient-foam);
+}
+
+.agendaServicePreview {
+  border: 0;
+  border-left: 2px solid rgba(36, 241, 168, 0.2);
+  border-radius: 0;
+  padding: 0 0 0 0.85rem;
+  background: none;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.agendaServicePreview h5,
+.agendaServicePreview p {
+  margin: 0;
+}
+
+.agendaServicePreview h5 {
+  font-size: 0.86rem;
+}
+
+.agendaServicePreview p {
+  font-size: 0.76rem;
+  color: rgba(236, 247, 241, 0.82);
+}
+
+.agendaMetaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.34rem;
+}
+
+.agendaMetaRow span {
+  border-radius: 999px;
+  border: 1px solid var(--patient-border);
+  padding: 0.15rem 0.45rem;
+  font-size: 0.68rem;
+  background: rgba(36, 241, 168, 0.05);
+  color: rgba(236, 247, 241, 0.88);
+}
+
+.agendaHomeActionRow,
+.agendaActionsRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.46rem;
+}
+
+.agendaRoutePanel {
+  border: 0;
+  border-top: 1px dashed rgba(36, 241, 168, 0.2);
+  border-radius: 0;
+  padding: 0.8rem 0 0;
+  display: grid;
+  gap: 0.5rem;
+  background: none;
+}
+
+.agendaRouteControls {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.48rem;
+}
+
+.agendaRouteResult {
+  display: grid;
+  gap: 0.32rem;
+  border-radius: 0;
+  padding: 0.2rem 0 0 0.85rem;
+  border: 0;
+  border-left: 1px solid rgba(36, 241, 168, 0.18);
+  background: none;
+}
+
+.agendaMapWrapper {
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  background: none;
+  display: grid;
+  gap: 0.42rem;
+}
+
+.agendaMapContainer {
+  width: 100%;
+  height: 300px;
+  border-radius: 26px;
+  overflow: hidden;
+  border: 0;
+  outline: 1px solid rgba(146, 255, 215, 0.16);
+}
+
+.agendaMapLoading {
+  width: 100%;
+  min-height: 180px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  border: 1px dashed rgba(36, 241, 168, 0.24);
+  color: rgba(224, 242, 241, 0.82);
+  font-size: 0.78rem;
+}
+
+.agendaMapHint {
+  margin: 0;
+  font-size: 0.72rem;
+  color: rgba(224, 242, 241, 0.78);
+}
+
+.agendaMapMarkerRoot,
+.agendaMapClinicRoot {
+  background: transparent;
+  border: 0;
+}
+
+.agendaMapMarker3D {
+  position: relative;
+  width: 38px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.45));
+}
+
+.agendaMapMarkerCore {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  background: linear-gradient(165deg, #b0ffe1, #24f1a8);
+  border: 1px solid rgba(236, 247, 241, 0.92);
+  animation: markerFloatY 1.8s ease-in-out infinite;
+}
+
+.agendaMapMarkerCore::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: #e0f2f1;
+}
+
+.agendaMapMarkerPulse {
+  position: absolute;
+  left: 50%;
+  bottom: 4px;
+  width: 12px;
+  height: 12px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: rgba(36, 241, 168, 0.38);
+  box-shadow: 0 0 0 0 rgba(36, 241, 168, 0.5);
+  animation: markerPulse 1.8s ease-out infinite;
+}
+
+.agendaMapClinicIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(236, 247, 241, 0.88);
+  background: linear-gradient(160deg, #045133, #24f1a8);
+  color: var(--patient-foam);
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+@keyframes markerFloatY {
+  0% {
+    transform: rotate(-45deg) translateY(0);
+  }
+  50% {
+    transform: rotate(-45deg) translateY(-4px);
+  }
+  100% {
+    transform: rotate(-45deg) translateY(0);
+  }
+}
+
+@keyframes markerPulse {
+  0% {
+    transform: translateX(-50%) scale(0.9);
+    box-shadow: 0 0 0 0 rgba(36, 241, 168, 0.46);
+  }
+  70% {
+    transform: translateX(-50%) scale(1.8);
+    box-shadow: 0 0 0 12px rgba(36, 241, 168, 0);
+  }
+  100% {
+    transform: translateX(-50%) scale(0.9);
+    box-shadow: 0 0 0 0 rgba(29, 233, 182, 0);
+  }
+}
+
+@media (max-width: 1024px) {
+  .agendaLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .agendaAside {
+    order: 2;
+  }
+}
+
+@media (max-width: 720px) {
+  .agendaSection {
+    padding: 0.72rem;
+  }
+
+  .agendaModeGrid,
+  .agendaDateTimeGrid,
+  .agendaRouteControls {
+    grid-template-columns: 1fr;
+  }
+
+  .agendaMapContainer {
+    height: 250px;
+  }
+}

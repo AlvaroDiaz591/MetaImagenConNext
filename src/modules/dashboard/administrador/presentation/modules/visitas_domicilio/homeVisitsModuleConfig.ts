@@ -5,6 +5,9 @@ export const homeVisitsModuleConfig: AdminModuleSchema = {
   titulo: "Visitas a Domicilio",
   columnasOcultas: ["id", "paciente_id", "personal_id"],
   etiquetas: {
+    paciente_nombre: "Paciente",
+    paciente_telefono: "Telefono",
+    paciente_email: "Correo",
     scheduled_at: "Fecha preferida",
     estado: "Estado",
     domicilio_direccion: "Direccion",

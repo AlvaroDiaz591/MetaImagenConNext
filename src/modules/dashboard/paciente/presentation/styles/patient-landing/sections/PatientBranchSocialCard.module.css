@@ -1,0 +1,172 @@
+.card {
+  position: relative;
+  width: 232px;
+  height: 232px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: rgba(9, 27, 35, 0.45) 0 8px 30px;
+  transition: transform 0.7s ease;
+  isolation: isolate;
+}
+
+.background {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 100% 107%, #068167 0%, #01926e 32%, #00ff4c 65%, #0e570e 100%);
+}
+
+.logo {
+  position: absolute;
+  right: 50%;
+  bottom: 50%;
+  transform: translate(50%, 50%);
+  transition: all 0.55s ease;
+  z-index: 3;
+}
+
+.logoSvg {
+  width: 48px;
+  height: 48px;
+  fill: rgba(255, 255, 255, 0.9);
+  stroke: rgba(255, 255, 255, 0.9);
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.55));
+}
+
+.icon {
+  display: inline-grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+}
+
+.svg {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+.box {
+  position: absolute;
+  padding: 14px;
+  text-align: right;
+  background: rgba(255, 255, 255, 0.22);
+  border-top: 1px solid rgba(255, 255, 255, 0.85);
+  border-right: 1px solid rgba(255, 255, 255, 0.85);
+  border-radius: 11% 14% 45% 0% / 10% 12% 75% 0%;
+  box-shadow: rgba(7, 16, 32, 0.28) -4px 4px 20px;
+  transform-origin: bottom left;
+  transition: all 0.85s ease;
+  z-index: 2;
+}
+
+.box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.box:hover::before,
+.box:focus-visible::before {
+  opacity: 1;
+}
+
+.box:hover .svg,
+.box:focus-visible .svg {
+  transform: scale(1.07);
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.85));
+}
+
+.box1 {
+  width: 70%;
+  height: 70%;
+  bottom: -70%;
+  left: -70%;
+}
+
+.box1::before {
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #ff53d4 56%, #62c2fe 94%);
+}
+
+.box2 {
+  width: 54%;
+  height: 54%;
+  bottom: -54%;
+  left: -54%;
+  transition-delay: 0.14s;
+}
+
+.box2::before {
+  background: radial-gradient(circle at 30% 107%, #9ae9ff 0%, #00acee 90%);
+}
+
+.box3 {
+  width: 38%;
+  height: 38%;
+  bottom: -38%;
+  left: -38%;
+  transition-delay: 0.24s;
+}
+
+.box3::before {
+  background: radial-gradient(circle at 30% 107%, #969fff 0%, #b349ff 90%);
+}
+
+.box4 {
+  width: 22%;
+  height: 22%;
+  bottom: -22%;
+  left: -22%;
+  transition-delay: 0.34s;
+}
+
+.box4::before {
+  background: radial-gradient(circle at 30% 107%, #8af8d3 0%, #22c55e 90%);
+}
+
+.card:hover,
+.card:focus-within {
+  transform: scale(1.06);
+}
+
+.card:hover .box,
+.card:focus-within .box {
+  bottom: -1px;
+  left: -1px;
+}
+
+.card:hover .logo,
+.card:focus-within .logo {
+  transform: translate(0, 0);
+  bottom: 20px;
+  right: 20px;
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 176px;
+    height: 176px;
+  }
+
+  .icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .logo span {
+    width: 42px;
+    height: 42px;
+    font-size: 0.84rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .box,
+  .logo,
+  .svg {
+    transition: none;
+  }
+}

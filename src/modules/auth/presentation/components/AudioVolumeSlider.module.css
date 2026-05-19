@@ -1,0 +1,58 @@
+.wrapper {
+  display: grid;
+  place-items: center;
+}
+
+.iconButton {
+  position: relative;
+  z-index: 3;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 50%;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(7, 24, 27, 0.24);
+  color: #e8fff8;
+  cursor: pointer;
+  transition: background-color 0.14s ease, transform 0.14s ease, color 0.14s ease;
+}
+
+.iconButton:hover,
+.iconButton:focus-visible {
+  background: rgba(8, 201, 155, 0.14);
+  transform: scale(1.04);
+}
+
+.iconButton:focus-visible {
+  outline: 2px solid rgba(143, 255, 240, 0.66);
+  outline-offset: 3px;
+}
+
+.iconButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.56;
+}
+
+.isMuted {
+  color: rgba(232, 255, 248, 0.68);
+}
+
+.volume {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+@media (max-width: 640px) {
+  .wrapper {
+    width: 50px;
+    height: 170px;
+  }
+
+  .slider {
+    --slider-width: 128px;
+    bottom: 42px;
+  }
+}

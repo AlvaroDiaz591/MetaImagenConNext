@@ -4,10 +4,21 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { GetPatientLandingCatalogUseCase } from "../../application/usecases/GetPatientLandingCatalogUseCase";
-import type { PatientLandingCatalog, PatientLandingServiceItem } from "../../domain/entities/PatientLandingCatalog";
+import type {
+  PatientLandingCatalog,
+  PatientLandingBranch,
+  PatientLandingDayKey,
+  PatientLandingDaySchedule,
+  PatientLandingServiceItem,
+} from "../../domain/entities/PatientLandingCatalog";
 import { PatientLandingCatalogApiAdapter } from "../../infrastructure/api/PatientLandingCatalogApiAdapter";
 import PatientOrbitRings from "./PatientOrbitRings";
 import type { AgendaServiceSelection } from "./PatientOrbitRings";
+import PatientAgendaSection from "./agenda/PatientAgendaSection";
+import PatientBranchLocationMap from "./location/PatientBranchLocationMap";
+import PatientLogoutConfirmModal from "./modals/PatientLogoutConfirmModal";
+import PatientLandingNav from "./navigation/PatientLandingNav";
+import PatientBranchSocialCard from "./social/PatientBranchSocialCard";
 import styles from "../styles/PatientLanding.module.css";
 
 const isAdminRole = (role: string): boolean => {
@@ -28,24 +39,69 @@ const normalizeText = (value: unknown): string => String(value || "").trim().toL
 const FISIO_KEYWORDS = ["fisio", "fisioterapia", "kinesio", "kinesiologia", "rehabilitacion", "terapia fisica"];
 const ESTETICA_KEYWORDS = ["estetica", "facial", "corporal", "belleza", "depil", "rejuven", "limpieza"];
 
-const priceFormatter = new Intl.NumberFormat("es-BO", {
-  style: "currency",
-  currency: "BOB",
-  maximumFractionDigits: 2,
-});
-
-const formatPrice = (price: number | null): string => {
-  if (price === null || !Number.isFinite(price)) return "Precio por evaluar";
-  return priceFormatter.format(price);
+const DAY_ORDER: PatientLandingDayKey[] = ["lunes", "martes", "miercoles", "jueves", "viernes", "sabado", "domingo"];
+const DAY_LABELS: Record<PatientLandingDayKey, string> = {
+  lunes: "Lunes",
+  martes: "Martes",
+  miercoles: "Miercoles",
+  jueves: "Jueves",
+  viernes: "Viernes",
+  sabado: "Sabado",
+  domingo: "Domingo",
 };
 
-const formatDuration = (minutes: number | null): string => {
-  if (minutes === null || minutes <= 0) return "Duracion flexible";
-  if (minutes < 60) return `${minutes} min`;
-  const hours = Math.floor(minutes / 60);
-  const rest = minutes % 60;
-  if (rest === 0) return `${hours} h`;
-  return `${hours} h ${rest} min`;
+const LANDING_NAV_ITEMS = [
+  { id: "servicios", label: "Servicios" },
+  { id: "agenda", label: "Agenda tu Cita" },
+  { id: "ubicacion", label: "Ubicacion" },
+  { id: "sobre-nosotros", label: "Sobre Nosotros" },
+];
+
+const CARE_PILLARS = [
+  {
+    title: "Recuperacion funcional",
+    description: "Sesiones orientadas a movilidad, alivio del dolor y retorno seguro a tu rutina.",
+  },
+  {
+    title: "Estetica con criterio clinico",
+    description: "Protocolos faciales y corporales con acompanamiento profesional y seguimiento responsable.",
+  },
+  {
+    title: "Agenda simple y precisa",
+    description: "Reserva en clinica o a domicilio con disponibilidad, geocerca y seleccion guiada.",
+  },
+];
+
+const toSocialHref = (value: string, kind: "instagram" | "facebook" | "tiktok" | "whatsapp"): string => {
+  const raw = (value || "").trim();
+  if (!raw) return "";
+  if (/^https?:\/\//i.test(raw)) return raw;
+
+  if (kind === "whatsapp") {
+    const digits = raw.replace(/[^\d]/g, "");
+    if (digits.length >= 8) return `https://wa.me/${digits}`;
+  }
+
+  return `https://${raw}`;
+};
+
+const buildDayText = (daySchedule?: PatientLandingDaySchedule): string => {
+  if (!daySchedule || !daySchedule.activo) return "Cerrado";
+  const morning = `${daySchedule.mananaInicio} - ${daySchedule.mananaFin}`;
+  if (!daySchedule.segundoTurnoActivo) return morning;
+  const secondLabel = daySchedule.segundoTurnoTipo === "noche" ? "Noche" : "Tarde";
+  return `${morning} / ${secondLabel} ${daySchedule.segundoTurnoInicio} - ${daySchedule.segundoTurnoFin}`;
+};
+
+const getBranchScheduleHighlight = (branch?: PatientLandingBranch | null): string => {
+  if (!branch) return "Agenda flexible segun disponibilidad.";
+
+  const firstActiveDay = DAY_ORDER.find((day) => branch.horarioDetalle[day]?.activo);
+  if (firstActiveDay) {
+    return `${DAY_LABELS[firstActiveDay]} ${buildDayText(branch.horarioDetalle[firstActiveDay])}`;
+  }
+
+  return branch.horario || "Agenda flexible segun disponibilidad.";
 };
 
 const groupServices = (services: PatientLandingServiceItem[]) => {
@@ -97,13 +153,15 @@ const PatientLandingShell = () => {
   const [introFinished, setIntroFinished] = useState(false);
   const [renderExperience, setRenderExperience] = useState(false);
   const [agendaService, setAgendaService] = useState<AgendaServiceSelection | null>(null);
+  const [activeSectionId, setActiveSectionId] = useState("servicios");
+  const [logoutConfirmOpen, setLogoutConfirmOpen] = useState(false);
 
   const landingUseCase = useMemo(
     () => new GetPatientLandingCatalogUseCase(new PatientLandingCatalogApiAdapter()),
     [],
   );
 
-  const handleLogout = useCallback(() => {
+  const performLogout = useCallback(() => {
     window.localStorage.removeItem("meta_imagen_token");
     window.sessionStorage.removeItem("meta_imagen_token");
     window.localStorage.removeItem("meta_imagen_usuario");
@@ -114,6 +172,7 @@ const PatientLandingShell = () => {
   }, [router]);
 
   const navigateSection = useCallback((sectionId: string) => {
+    setActiveSectionId(sectionId);
     const section = document.getElementById(sectionId);
     if (section) {
       section.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -123,23 +182,6 @@ const PatientLandingShell = () => {
   const handleAgendaSelection = useCallback((service: AgendaServiceSelection) => {
     setAgendaService(service);
   }, []);
-
-  const openAgendaWhatsapp = useCallback(() => {
-    if (!agendaService) {
-      return;
-    }
-
-    const message = [
-      "Hola, quiero agendar una cita.",
-      `Servicio: ${agendaService.nombre}`,
-      `Categoria: ${agendaService.categoria}`,
-      `Precio referencial: ${formatPrice(agendaService.precio)}`,
-      `Duracion estimada: ${formatDuration(agendaService.duracionMinutos)}`,
-    ].join("\n");
-
-    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
-  }, [agendaService]);
 
   useEffect(() => {
     const timerLine = window.setTimeout(() => setShowIntroLine(true), 220);
@@ -156,6 +198,38 @@ const PatientLandingShell = () => {
       window.clearTimeout(timerRender);
     };
   }, []);
+
+  useEffect(() => {
+    if (!introFinished) return;
+
+    const sections = LANDING_NAV_ITEMS
+      .map((item) => document.getElementById(item.id))
+      .filter((section): section is HTMLElement => Boolean(section));
+
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleEntry = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((left, right) => right.intersectionRatio - left.intersectionRatio)[0];
+
+        if (visibleEntry?.target.id) {
+          setActiveSectionId(visibleEntry.target.id);
+        }
+      },
+      {
+        rootMargin: "-18% 0px -52% 0px",
+        threshold: [0.2, 0.45, 0.68],
+      },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [introFinished]);
 
   useEffect(() => {
     const token = getToken();
@@ -192,7 +266,7 @@ const PatientLandingShell = () => {
         );
 
         if (needsLogout) {
-          handleLogout();
+          performLogout();
           return;
         }
 
@@ -209,14 +283,37 @@ const PatientLandingShell = () => {
     return () => {
       active = false;
     };
-  }, [handleLogout, landingUseCase, router]);
+  }, [performLogout, landingUseCase, router]);
 
   const grouped = useMemo(() => {
     const services = catalog?.servicios || [];
     return groupServices(services);
   }, [catalog?.servicios]);
+  const branches = catalog?.sucursales || [];
+  const activeBranches = branches.filter((branch) => branch.activo);
+  const activeBranchCount = activeBranches.length || branches.length;
+  const totalServices = catalog?.servicios.length ?? 0;
+  const featuredBranch = activeBranches[0] || branches[0] || null;
+  const featuredBranchSummary =
+    featuredBranch?.direccion || "Atencion clinica y a domicilio con acompanamiento profesional.";
+  const featuredBranchHours = getBranchScheduleHighlight(featuredBranch);
+  const heroStats = [
+    {
+      value: String(totalServices).padStart(2, "0"),
+      label: "Tratamientos disponibles",
+    },
+    {
+      value: String(activeBranchCount).padStart(2, "0"),
+      label: "Sucursales y puntos de atencion",
+    },
+    {
+      value: "3D",
+      label: "Exploracion inmersiva del catalogo",
+    },
+  ];
 
   const welcomeName = catalog?.nombreVisible || "Paciente";
+  const agendaToken = typeof window === "undefined" ? "" : getToken();
 
   return (
     <div className={styles.pageRoot}>
@@ -243,13 +340,18 @@ const PatientLandingShell = () => {
         </div>
       ) : null}
 
+      <PatientLogoutConfirmModal
+        open={logoutConfirmOpen}
+        onCancel={() => setLogoutConfirmOpen(false)}
+        onConfirm={performLogout}
+      />
+
       <header className={styles.topBar}>
-        <nav className={styles.mainNav}>
-          <button type="button" onClick={() => navigateSection("agenda")}>Agenda tu Cita</button>
-          <button type="button" onClick={() => navigateSection("servicios")}>Servicios</button>
-          <button type="button" onClick={() => navigateSection("ubicacion")}>Ubicacion</button>
-          <button type="button" onClick={() => navigateSection("sobre-nosotros")}>Sobre Nosotros</button>
-        </nav>
+        <PatientLandingNav
+          items={LANDING_NAV_ITEMS}
+          activeId={activeSectionId}
+          onSelect={navigateSection}
+        />
 
         <div className={styles.topBarActions}>
           <button type="button" aria-label="Perfil" title="Perfil">
@@ -258,7 +360,12 @@ const PatientLandingShell = () => {
               <path d="M4 20a8 8 0 0 1 16 0" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
             </svg>
           </button>
-          <button type="button" aria-label="Cerrar sesion" title="Cerrar sesion" onClick={handleLogout}>
+          <button
+            type="button"
+            aria-label="Cerrar sesion"
+            title="Cerrar sesion"
+            onClick={() => setLogoutConfirmOpen(true)}
+          >
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path d="M10 17l5-5-5-5" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
               <path d="M15 12H4" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
@@ -275,15 +382,56 @@ const PatientLandingShell = () => {
 
         <section className={styles.heroContent} id="servicios">
           <div className={styles.heroTextColumn}>
+            <span className={styles.heroIntroBadge}>Portal del paciente Meta Imagen</span>
             <p className={styles.greeting}>Hola, {welcomeName}</p>
-            <h2>Experiencia inmersiva de tratamientos y servicios</h2>
-            <p>
-              Explora nuestros servicios en carruseles 3D separados por especialidad. Cada tarjeta muestra imagen,
-              video y al presionarla gira para revelar su descripcion completa.
+            <h2>
+              Rehabilitacion y bienestar
+              <span className={styles.heroHeadlineAccent}> con una experiencia digital clara, moderna y profesional.</span>
+            </h2>
+            <p className={styles.heroLead}>
+              Explora tratamientos de fisioterapia y estetica, revisa detalles desde el carrusel 3D y agenda en
+              clinica o a domicilio desde una sola interfaz.
             </p>
             <div className={styles.ctaRow}>
-              <button type="button" onClick={() => navigateSection("agenda")}>Agenda tu cita</button>
-              <button type="button" onClick={() => navigateSection("sobre-nosotros")}>Conocer Meta Imagen</button>
+              <button
+                type="button"
+                className={styles.heroPrimaryButton}
+                onClick={() => navigateSection("agenda")}
+              >
+                Agenda tu cita
+              </button>
+              <button
+                type="button"
+                className={styles.heroSecondaryButton}
+                onClick={() => navigateSection("sobre-nosotros")}
+              >
+                Conocer Meta Imagen
+              </button>
+            </div>
+
+            <div className={styles.heroStatsGrid}>
+              {heroStats.map((item) => (
+                <article key={item.label} className={styles.heroStatCard}>
+                  <strong className={styles.heroStatValue}>{item.value}</strong>
+                  <span className={styles.heroStatLabel}>{item.label}</span>
+                </article>
+              ))}
+            </div>
+
+            <div className={styles.heroSpotlightCard}>
+              <div className={styles.heroSpotlightContent}>
+                <span className={styles.heroSpotlightTag}>Atencion destacada</span>
+                <strong>{featuredBranch?.nombre || "Meta Imagen"}</strong>
+                <p>{featuredBranchSummary}</p>
+                <small>{featuredBranchHours}</small>
+              </div>
+              <button
+                type="button"
+                className={styles.heroSecondaryButton}
+                onClick={() => navigateSection("ubicacion")}
+              >
+                Ver ubicaciones
+              </button>
             </div>
 
             <div className={styles.fluidText}>
@@ -297,50 +445,170 @@ const PatientLandingShell = () => {
           </div>
 
           <div className={styles.heroRingsColumn}>
-            {!renderExperience ? <p className={styles.statusText}>Iniciando experiencia...</p> : null}
-            {renderExperience && loading ? <p className={styles.statusText}>Cargando catalogo...</p> : null}
-            {renderExperience && !loading && error ? <p className={styles.statusText}>{error}</p> : null}
-            {renderExperience && !loading && !error ? (
-              <PatientOrbitRings
-                fisioterapiaItems={grouped.fisioterapia}
-                esteticaItems={grouped.estetica}
-                enableVideoPlayback={renderExperience}
-                onSelectAgendaService={handleAgendaSelection}
-              />
-            ) : null}
+            <div className={styles.heroExperienceHeader}>
+              <div className={styles.heroExperienceCopy}>
+                <span className={styles.heroExperienceTag}>Explorador inmersivo</span>
+                <h3>Carrusel 3D de tratamientos</h3>
+                <p>Gira cada tarjeta, revisa beneficios, mira video y pasa tu seleccion a la agenda en segundos.</p>
+              </div>
+              <div className={styles.heroExperienceSelection}>
+                <span>{agendaService ? "Seleccion actual" : "Siguiente paso"}</span>
+                <strong>{agendaService ? agendaService.nombre : "Selecciona un servicio para llenar tu agenda"}</strong>
+              </div>
+            </div>
+
+            <div className={styles.heroExperienceBody}>
+              {!renderExperience ? <p className={styles.statusText}>Iniciando experiencia...</p> : null}
+              {renderExperience && loading ? <p className={styles.statusText}>Cargando catalogo...</p> : null}
+              {renderExperience && !loading && error ? <p className={styles.statusText}>{error}</p> : null}
+              {renderExperience && !loading && !error ? (
+                <PatientOrbitRings
+                  fisioterapiaItems={grouped.fisioterapia}
+                  esteticaItems={grouped.estetica}
+                  enableVideoPlayback={renderExperience}
+                  onSelectAgendaService={handleAgendaSelection}
+                />
+              ) : null}
+            </div>
           </div>
         </section>
 
-        <section id="agenda" className={styles.infoSection}>
-          <h3>Agenda tu Cita</h3>
-          {agendaService ? (
-            <div className={styles.agendaServiceCard}>
-              <p className={styles.agendaServiceTag}>Servicio seleccionado</p>
-              <h4>{agendaService.nombre}</h4>
-              <p className={styles.agendaServiceDescription}>{agendaService.descripcion}</p>
-              <div className={styles.agendaServiceMeta}>
-                <span>{agendaService.categoria}</span>
-                <span>{formatPrice(agendaService.precio)}</span>
-                <span>{formatDuration(agendaService.duracionMinutos)}</span>
-              </div>
-              <button type="button" onClick={openAgendaWhatsapp}>Agendar este servicio</button>
+        <section id="agenda">
+          <PatientAgendaSection token={agendaToken} preferredServiceId={agendaService?.id || null} />
+        </section>
+
+        <section id="ubicacion" className={`${styles.infoSection} ${styles.infoSectionPlain}`}>
+          <div className={styles.sectionHeader}>
+            <span className={styles.sectionEyebrow}>Ubicacion y contacto</span>
+            <div>
+              <h3>Espacios pensados para una experiencia serena y profesional</h3>
+              <p className={styles.sectionLead}>
+                Revisa horarios, ubicacion y redes oficiales de cada sucursal antes de programar tu visita.
+              </p>
             </div>
+          </div>
+          {branches.length === 0 ? (
+            <p className={styles.sectionFallback}>
+              Estamos listos para atenderte en clinica y en modalidades segun disponibilidad de servicio.
+            </p>
           ) : (
-            <p>Selecciona un servicio desde una tarjeta para agendarlo aqui con sus detalles.</p>
+            <div className={styles.locationGrid}>
+              {branches.map((branch) => {
+                const hasDetailedSchedule = DAY_ORDER.some((day) => Boolean(branch.horarioDetalle[day]));
+                const detailedDayRows = DAY_ORDER
+                  .map((day) => ({ day, schedule: branch.horarioDetalle[day] }))
+                  .filter((item) => Boolean(item.schedule));
+                const socialLinks = [
+                  {
+                    key: "instagram",
+                    icon: "/assets/social/instagram.svg",
+                    label: "Instagram",
+                    href: toSocialHref(branch.instagramUrl, "instagram"),
+                  },
+                  {
+                    key: "facebook",
+                    icon: "/assets/social/facebook.svg",
+                    label: "Facebook",
+                    href: toSocialHref(branch.facebookUrl, "facebook"),
+                  },
+                  {
+                    key: "tiktok",
+                    icon: "/assets/social/tiktok.svg",
+                    label: "TikTok",
+                    href: toSocialHref(branch.tiktokUrl, "tiktok"),
+                  },
+                  {
+                    key: "whatsapp",
+                    icon: "/assets/social/whatsapp.svg",
+                    label: "WhatsApp",
+                    href: toSocialHref(branch.whatsapp, "whatsapp"),
+                  },
+                ];
+
+                return (
+                  <article key={`branch-${branch.id ?? branch.nombre}`} className={styles.locationCard}>
+                    <div className={styles.locationMedia}>
+                      {branch.latitud !== null && branch.longitud !== null ? (
+                        <PatientBranchLocationMap
+                          branchName={branch.nombre || "Sucursal Meta Imagen"}
+                          token={agendaToken}
+                          latitude={branch.latitud}
+                          longitude={branch.longitud}
+                        />
+                      ) : (
+                        <div className={styles.locationMapFallback}>
+                          <span className={styles.locationBadge}>Ubicacion en actualizacion</span>
+                          <strong>{branch.nombre || "Sucursal"}</strong>
+                          <p>Estamos afinando las coordenadas exactas de esta sucursal.</p>
+                        </div>
+                      )}
+                    </div>
+
+                    <div className={styles.locationBody}>
+                      <div className={styles.locationIdentity}>
+                        <span className={styles.locationBadge}>
+                          {branch.activo ? "Atencion activa" : "Disponibilidad sujeta a agenda"}
+                        </span>
+                        <h4>{branch.nombre || "Sucursal"}</h4>
+                        <p>{branch.direccion || "Direccion no registrada"}</p>
+                      </div>
+                      {branch.descripcion ? <p className={styles.locationDescription}>{branch.descripcion}</p> : null}
+
+                      <div className={styles.locationMetaRow}>
+                        {branch.telefono ? <span>Tel: {branch.telefono}</span> : null}
+                        {branch.correo ? <span>{branch.correo}</span> : null}
+                      </div>
+
+                      <div className={styles.locationHoursBlock}>
+                        <strong>Horarios</strong>
+                        {hasDetailedSchedule ? (
+                          <ul className={styles.locationHoursList}>
+                            {detailedDayRows.map(({ day, schedule }) => (
+                              <li key={`${branch.id ?? branch.nombre}-${day}`} className={styles.locationHoursItem}>
+                                <span className={styles.locationDayLabel}>{DAY_LABELS[day]}</span>
+                                <span className={styles.locationDayValue}>{buildDayText(schedule)}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        ) : branch.horario ? (
+                          <p className={styles.locationHoursFallback}>{branch.horario}</p>
+                        ) : (
+                          <p className={styles.locationHoursFallback}>Horario por confirmar</p>
+                        )}
+                      </div>
+
+                      <div className={styles.locationActionRow}>
+                        <PatientBranchSocialCard branchName={branch.nombre || "Sucursal"} links={socialLinks} />
+                      </div>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
           )}
         </section>
 
-        <section id="ubicacion" className={styles.infoSection}>
-          <h3>Ubicacion</h3>
-          <p>Estamos listos para atenderte en clinica y en modalidades segun disponibilidad de servicio.</p>
-        </section>
-
         <section id="sobre-nosotros" className={styles.infoSection}>
-          <h3>Sobre Nosotros</h3>
-          <p>
-            Meta Imagen integra fisioterapia y estetica con un enfoque humano, tecnologico y centrado en
-            resultados reales para cada paciente.
-          </p>
+          <div className={styles.sectionHeader}>
+            <span className={styles.sectionEyebrow}>Sobre Meta Imagen</span>
+            <div>
+              <h3>Fisioterapia y estetica con un enfoque humano, preciso y contemporaneo</h3>
+              <p className={styles.sectionLead}>
+                Integramos tecnologia, acompanamiento profesional y experiencia de usuario para que cada paso se
+                sienta claro, confiable y cercano.
+              </p>
+            </div>
+          </div>
+
+          <div className={styles.aboutGrid}>
+            {CARE_PILLARS.map((pillar, index) => (
+              <article key={pillar.title} className={styles.aboutCard}>
+                <span className={styles.aboutCardIndex}>{`0${index + 1}`}</span>
+                <h4>{pillar.title}</h4>
+                <p>{pillar.description}</p>
+              </article>
+            ))}
+          </div>
         </section>
       </main>
     </div>
